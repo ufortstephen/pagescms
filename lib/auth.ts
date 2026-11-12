@@ -10,7 +10,7 @@ import { sendEmail } from "@/lib/mailer";
 import { syncGithubProfileOnLogin } from "@/lib/github-account";
 import { bindCollaboratorInvitesToUser } from "@/lib/collaborator-access";
 import { LoginEmailTemplate } from "@/components/email/login";
-import { render } from "@react-email/render";
+import { render } from "react-email";
 
 export const auth = betterAuth({
   baseURL: getBaseUrl(),

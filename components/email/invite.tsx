@@ -12,7 +12,7 @@ import {
   Section,
   Text,
   Tailwind,
-} from "@react-email/components";
+} from "react-email";
 import { emailTheme } from "@/components/email/theme";
 
 export const InviteEmailTemplate = ({
