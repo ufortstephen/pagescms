@@ -24,12 +24,14 @@ import {
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
 import { ArrowUpRight, ChevronsUpDown } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export function RepoDropdown({
   onClick
 }: {
   onClick?: () => void;
 }) {
+  const { t } = useTranslation();
   const router = useRouter();
   const { owner, repo, branches, defaultBranch } = useRepo();
   const{ config } = useConfig();
@@ -64,7 +66,7 @@ export function RepoDropdown({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="w-full h-15 justify-start px-3">
-            <img className="h-10 w-10 rounded-lg" src={`https://github.com/${owner}.png`} alt="Picture of the author" />
+            <img className="h-10 w-10 rounded-lg" src={`https://github.com/${owner}.png`} alt={t('repo.dropdown.author_picture_alt')} />
             <div className="text-left overflow-hidden ml-3">
               <div className="font-medium truncate">{repo}</div>
               <div className="text-xs text-muted-foreground truncate">{config?.branch}</div>
@@ -75,12 +77,12 @@ export function RepoDropdown({
         <DropdownMenuContent align="end">
           <DropdownMenuItem asChild>
             <a href={`https://github.com/${owner}/${repo}`} target="_blank" onClick={onClick} >
-              View on GitHub
+              {t('actions.view_on_github_link')}
               <ArrowUpRight className="size-3 text-muted-foreground ml-auto" />
             </a>
           </DropdownMenuItem>
           <DropdownMenuSeparator/>
-          <DropdownMenuLabel className="w-40 text-xs text-muted-foreground font-medium">Branches{branchesCount && ` (${branchesCount})`}</DropdownMenuLabel>
+          <DropdownMenuLabel className="w-40 text-xs text-muted-foreground font-medium">{t('repo.dropdown.branches_label')}{branchesCount && ` (${branchesCount})`}</DropdownMenuLabel>
             {displayBranches.length > 0 && (
               <>
                 <DropdownMenuRadioGroup value={config?.branch} onValueChange={handleBranchChange}>
@@ -94,12 +96,12 @@ export function RepoDropdown({
               </>
             )}
           <DialogTrigger asChild>
-            <DropdownMenuItem onClick={onClick}>Manage branches</DropdownMenuItem>
+            <DropdownMenuItem onClick={onClick}>{t('repo.dropdown.manage_branches_item')}</DropdownMenuItem>
           </DialogTrigger>
         </DropdownMenuContent>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Manage branches</DialogTitle>
+            <DialogTitle>{t('repo.dropdown.manage_branches_item')}</DialogTitle>
           </DialogHeader>
           <RepoBranches/>
         </DialogContent>

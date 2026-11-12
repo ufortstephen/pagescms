@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from 'react-i18next';
 
 type FolderCreateResult = {
   path: string;
@@ -35,6 +36,7 @@ const FolderCreate = ({
   name?: string;
   onCreate?: (entry: FolderCreateResult) => void;
 }) => {
+  const { t } = useTranslation();
   const { config } = useConfig();
   if (!config) throw new Error(`Configuration not found.`);
 
@@ -45,7 +47,7 @@ const FolderCreate = ({
   const handleCreate = async () => {
     const normalizedFolderInput = normalizePath(folderPath.trim());
     if (!normalizedFolderInput) {
-      toast.error("Folder name is required.");
+      toast.error(t('folder_create.name_required_error'));
       return;
     }
 
@@ -119,8 +121,8 @@ const FolderCreate = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create a folder</DialogTitle>
-          <DialogDescription>Choose a name for the folder to create{path ? ` under "${normalizePath(path)}"` : null}.</DialogDescription>
+          <DialogTitle>{t('folder_create.title')}</DialogTitle>
+          <DialogDescription>{t('folder_create.description')}{path ? t('folder_create.under_value_description', { value: normalizePath(path) }) : null}.</DialogDescription>
         </DialogHeader>
         <form
           onSubmit={async (event) => {
@@ -136,9 +138,9 @@ const FolderCreate = ({
           />
           <DialogFooter>
             <DialogClose asChild>
-              <Button type="button" variant="secondary" disabled={isSubmitting}>Cancel</Button>
+              <Button type="button" variant="secondary" disabled={isSubmitting}>{t('admin_confirm.cancel_button')}</Button>
             </DialogClose>
-            <Button type="submit" disabled={isSubmitting || !folderPath.trim()}>Create</Button>
+            <Button type="submit" disabled={isSubmitting || !folderPath.trim()}>{t('folder_create.create_button')}</Button>
           </DialogFooter>
         </form>
       </DialogContent>

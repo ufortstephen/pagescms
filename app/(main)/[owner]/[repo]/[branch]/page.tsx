@@ -9,8 +9,10 @@ import { isConfigEnabled } from "@/lib/config";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { useTranslation } from 'react-i18next';
 
 export default function Page() {
+  const { t } = useTranslation();
   const { config } = useConfig();
   const { user } = useUser();
   const router = useRouter();
@@ -33,22 +35,22 @@ export default function Page() {
       hasGithubIdentity(user)
         ? <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Configuration unavailable</EmptyTitle>
-              <EmptyDescription>This repository is not configured, and configuration access is disabled here. Edit &quot;.pages.yml&quot; on GitHub if you think this is a mistake.</EmptyDescription>
+              <EmptyTitle>{t('repo.configuration_unavailable')}</EmptyTitle>
+              <EmptyDescription>{t('repo.configuration_disabled_description')}</EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <Link
                 className={buttonVariants({ variant: "default" })}
                 href={`https://github.com/${config?.owner}/${config?.repo}/edit/${encodeURIComponent(config!.branch)}/.pages.yml`}
               >
-                Edit configuration on GitHub
+                {t('repo.edit_configuration_github_link')}
               </Link>
             </EmptyContent>
           </Empty>
         : <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Repository not configured</EmptyTitle>
-              <EmptyDescription>This repository does not have a &quot;.pages.yml&quot; file yet. Ask a GitHub admin to initialize the configuration first.</EmptyDescription>
+              <EmptyTitle>{t('repo.repository_not_configured_title')}</EmptyTitle>
+              <EmptyDescription>{t('repo.missing_pages_yml_description')}</EmptyDescription>
             </EmptyHeader>
           </Empty>
     )

@@ -23,12 +23,14 @@ import { ChevronsUpDown, LockKeyhole, Search, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { hasGithubIdentity } from "@/lib/authz-shared";
 import { requireApiSuccess } from "@/lib/api-client";
+import { useTranslation } from 'react-i18next';
 
 export function RepoSelect({
   onAccountSelect
 }: {
   onAccountSelect?: (account: any) => void
 }) {
+  const { t } = useTranslation();
   const { user } = useUser();
   const isGithubUser = hasGithubIdentity(user);
 
@@ -115,7 +117,7 @@ export function RepoSelect({
           <Skeleton className="h-5 w-24 text-left rounded" />
           <Skeleton className="h-5 w-24 text-left rounded" />
           <Button variant="outline" size="xs" className="ml-auto" disabled>
-            Open
+            {t('repo.latest.open_link')}
           </Button>
         </li>
       ))}
@@ -129,7 +131,7 @@ export function RepoSelect({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
-                <img className="size-6 rounded" src={`https://github.com/${selectedAccount?.login}.png`} alt={`${selectedAccount?.login}'s avatar`}/>
+                <img className="size-6 rounded" src={`https://github.com/${selectedAccount?.login}.png`} alt={t('repo_select.login_avatar_alt', { login: selectedAccount?.login })}/>
                 <span className="mr-2">{selectedAccount?.login}</span>
                 <ChevronsUpDown className="ml-auto h-4 w-4 opacity-50"/>
               </Button>
@@ -143,7 +145,7 @@ export function RepoSelect({
                     if (onAccountSelect) onAccountSelect(account);
                   }}
                 >
-                  <img className="size-6 rounded" src={`https://github.com/${account.login}.png`} alt={`${account.login}'s avatar`}/>
+                  <img className="size-6 rounded" src={`https://github.com/${account.login}.png`} alt={t('repo_select.login_avatar_alt', { login: account.login })}/>
                   <span className="truncate">{account.login}</span>
                 </DropdownMenuItem>
               ))}
@@ -151,7 +153,7 @@ export function RepoSelect({
                 <>
                   <DropdownMenuSeparator/>
                   <DropdownMenuItem asChild>
-                    <Link href="/api/github-app/install">Manage GitHub accounts</Link>
+                    <Link href="/api/github-app/install">{t('repo_select.manage_github_accounts_link')}</Link>
                   </DropdownMenuItem>
                 </>
               }
@@ -167,18 +169,18 @@ export function RepoSelect({
                   href={selectedAccountInstallationUrl}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`Manage ${selectedAccount.login} installation settings on GitHub`}
+                  aria-label={t('repo_select.manage_login_installation_settings_aria_label', { login: selectedAccount.login })}
                 >
                   <Settings />
                 </a>
               </TooltipTrigger>
-              <TooltipContent sideOffset={6}>Manage GitHub App</TooltipContent>
+              <TooltipContent sideOffset={6}>{t('repo_select.manage_github_app_tooltip')}</TooltipContent>
             </Tooltip>
           )}
         </ButtonGroup>
         <div className="relative flex-1"> 
           <Input
-            placeholder="Search repositories by name"
+            placeholder={t('repo_select.search_repositories_input_placeholder')}
             className="pl-9"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
@@ -198,22 +200,22 @@ export function RepoSelect({
                   >{result.repo}</Link>
                   {result.private && <LockKeyhole className="h-3 w-3 opacity-50"/>}
                   {result.updatedAt &&
-                    <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(result.updatedAt))} ago</div>
+                    <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(result.updatedAt))} {t('repo.latest.ago')}</div>
                   }
                   <Link
                     className={cn("ml-auto", buttonVariants({ variant: "outline", size: "xs"}))}
                     href={`/${result.owner}/${result.repo}/${result.defaultBranch ? encodeURIComponent(result.defaultBranch) : ""}`}
                   >
-                    Open
+                    {t('repo.latest.open_link')}
                   </Link>
                 </li>
               ))}
             </ul>
           : <Empty className="h-[206px] flex-none bg-accent p-4 md:p-6">
               <EmptyHeader>
-                <EmptyTitle>No projects</EmptyTitle>
+                <EmptyTitle>{t('repo_select.no_projects_title')}</EmptyTitle>
                 <EmptyDescription>
-                  No projects matched your search.
+                  {t('repo_select.no_projects_description')}
                 </EmptyDescription>
               </EmptyHeader>
               {selectedAccountInstallationUrl && (
@@ -224,7 +226,7 @@ export function RepoSelect({
                     rel="noreferrer"
                     className={buttonVariants({ variant: "outline" })}
                   >
-                    Manage GitHub App
+                    {t('repo_select.manage_github_app_tooltip')}
                   </a>
                 </EmptyContent>
               )}

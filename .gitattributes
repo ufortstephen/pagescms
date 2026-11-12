@@ -1,0 +1,2 @@
+# Locale files merge key by key (localize-dev merge-locales), so branches adding keys don't conflict.
+locales/*.json merge=localize-dev

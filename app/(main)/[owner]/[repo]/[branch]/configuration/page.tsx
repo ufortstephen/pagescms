@@ -22,8 +22,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { BookText } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export default function Page() {
+  const { t } = useTranslation();
   const { config, setConfig } = useConfig();
   const { user } = useUser();
 
@@ -35,9 +37,9 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Access denied</EmptyTitle>
+          <EmptyTitle>{t('repo_actions.access_denied_title')}</EmptyTitle>
           <EmptyDescription>
-            Only GitHub users can manage repository configuration.
+            {t('configuration.github_users_only_message')}
           </EmptyDescription>
         </EmptyHeader>
       </Empty>
@@ -59,7 +61,7 @@ export default function Page() {
       <Entry
         path=".pages.yml"
         onSave={handleSave}
-        title="Configuration"
+        title={t('configuration.title')}
         headerMeta={
           <Tooltip>
             <TooltipTrigger asChild>
@@ -75,11 +77,11 @@ export default function Page() {
                   rel="noreferrer"
                 >
                   <BookText />
-                  <span className="sr-only">Configuration docs</span>
+                  <span className="sr-only">{t('configuration.docs_label')}</span>
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>View docs</TooltipContent>
+            <TooltipContent>{t('configuration.view_docs_tooltip')}</TooltipContent>
           </Tooltip>
         }
       />

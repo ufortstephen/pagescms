@@ -10,6 +10,7 @@ import { invalidateSessionForGithubAuthError } from "@/lib/github-auth-server";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { getTranslation } from '../../../../i18n.server';
 
 export default async function Layout({
   children,
@@ -18,6 +19,7 @@ export default async function Layout({
   children: React.ReactNode;
   params: Promise<{ owner: string; repo: string; }>;
 }) {
+  const { t } = await getTranslation();
   const { owner, repo } = await params;
   const requestHeaders = await headers();
   const session = await getServerSession();
@@ -40,12 +42,12 @@ export default async function Layout({
       return(
         <Empty className="absolute inset-0 border-0 rounded-none">
           <EmptyHeader>
-            <EmptyTitle>Empty repository</EmptyTitle>
-            <EmptyDescription>Create a branch and add a &quot;.pages.yml&quot; file to configure this repository.</EmptyDescription>
+            <EmptyTitle>{t('repo.empty_title')}</EmptyTitle>
+            <EmptyDescription>{t('repo.empty_description')}</EmptyDescription>
           </EmptyHeader>
           <EmptyContent>
             <Link className={buttonVariants({ variant: "default" })} href="/">
-              Choose another repository
+              {t('repo.choose_another_repo_link')}
             </Link>
           </EmptyContent>
         </Empty>
@@ -69,12 +71,12 @@ export default async function Layout({
         return(
           <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Repository not found</EmptyTitle>
-              <EmptyDescription>It may have been removed, renamed, or the URL may be incorrect.</EmptyDescription>
+              <EmptyTitle>{t('repo.not_found_title')}</EmptyTitle>
+              <EmptyDescription>{t('repo.not_found_description')}</EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <Link className={buttonVariants({ variant: "default" })} href="/">
-                Choose another repository
+                {t('repo.choose_another_repo_link')}
               </Link>
             </EmptyContent>
           </Empty>
@@ -83,12 +85,12 @@ export default async function Layout({
         return(
           <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Access denied</EmptyTitle>
-              <EmptyDescription>You do not have permission to access this repository.</EmptyDescription>
+              <EmptyTitle>{t('repo_actions.access_denied_title')}</EmptyTitle>
+              <EmptyDescription>{t('repo.permission_denied_description')}</EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <Link className={buttonVariants({ variant: "default" })} href="/">
-                Choose another repository
+                {t('repo.choose_another_repo_link')}
               </Link>
             </EmptyContent>
           </Empty>

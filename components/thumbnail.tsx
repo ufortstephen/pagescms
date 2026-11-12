@@ -6,6 +6,7 @@ import { useRepo } from "@/contexts/repo-context";
 import { useConfig } from "@/contexts/config-context";
 import { cn } from "@/lib/utils";
 import { Ban, ImageOff, Loader } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export function Thumbnail({
   name,
@@ -16,6 +17,7 @@ export function Thumbnail({
   path: string | null;
   className?: string;
 }) {
+  const { t } = useTranslation();
   const [rawUrl, setRawUrl] = useState<string | null>(null);
   const [error, setError] = useState(null);
 
@@ -54,7 +56,7 @@ export function Thumbnail({
         ? rawUrl
           ? <img
               src={rawUrl}
-              alt={path.split("/").pop() || "thumbnail"}
+              alt={path.split("/").pop() || t('thumbnail.alt_text')}
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -62,10 +64,10 @@ export function Thumbnail({
             ? <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title={error}>
                 <Ban className="h-4 w-4"/>
               </div>
-            : <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title="Loading...">
+            : <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title={t('thumbnail.loading_title')}>
                 <Loader className="h-4 w-4 animate-spin"/>
               </div>
-        : <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title="No image">
+        : <div className="flex justify-center items-center absolute inset-0 text-muted-foreground" title={t('thumbnail.no_image_title')}>
             <ImageOff className="h-4 w-4"/>
           </div>
       }

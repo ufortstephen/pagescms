@@ -73,6 +73,7 @@ import {
   Sun,
   Users,
 } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 type NavItem = {
   key: string;
@@ -89,6 +90,7 @@ type NavigationNode = {
 };
 
 function RepoSwitcher() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { owner, repo, branches = [] } = useRepo();
   const { config } = useConfig();
@@ -195,13 +197,13 @@ function RepoSwitcher() {
                 target="_blank"
                 rel="noreferrer"
               >
-                View on GitHub
+                {t('actions.view_on_github_link')}
                 <ArrowUpRight className="size-3 text-muted-foreground ml-auto" />
               </a>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuLabel className="text-xs text-muted-foreground">
-              Branches
+              {t('repo.dropdown.branches_label')}
             </DropdownMenuLabel>
             <DropdownMenuRadioGroup
               value={currentBranch}
@@ -215,13 +217,13 @@ function RepoSwitcher() {
             </DropdownMenuRadioGroup>
             <DropdownMenuSeparator />
             <DialogTrigger asChild>
-              <DropdownMenuItem>Manage branches</DropdownMenuItem>
+              <DropdownMenuItem>{t('repo.dropdown.manage_branches_item')}</DropdownMenuItem>
             </DialogTrigger>
             {recentRepos.length > 0 && (
               <>
                 <DropdownMenuSeparator />
                 <DropdownMenuLabel className="text-xs text-muted-foreground">
-                  Recently visited
+                  {t('repo.recently_visited')}
                 </DropdownMenuLabel>
                 {recentRepos.map((visit) => (
                   <DropdownMenuItem
@@ -233,7 +235,7 @@ function RepoSwitcher() {
                     >
                       <img
                         src={`https://github.com/${visit.owner}.png`}
-                        alt={`${visit.owner}'s avatar`}
+                        alt={t('repo.owner_avatar', { owner: visit.owner })}
                         className="size-5 rounded"
                       />
                       <span className="truncate">{visit.repo}</span>
@@ -244,14 +246,14 @@ function RepoSwitcher() {
             )}
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/">All projects</Link>
+              <Link href="/">{t('repo.all_projects')}</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Manage branches</DialogTitle>
+          <DialogTitle>{t('repo.dropdown.manage_branches_item')}</DialogTitle>
         </DialogHeader>
         <RepoBranches />
       </DialogContent>
@@ -260,6 +262,7 @@ function RepoSwitcher() {
 }
 
 export function RepoSidebar() {
+  const { t } = useTranslation();
   const pathname = usePathname();
   const { user } = useUser();
   const { config } = useConfig();
@@ -575,7 +578,7 @@ export function RepoSidebar() {
     rootActions.length > 0 && config
       ? (
         <SidebarGroup key="Actions">
-          <SidebarGroupLabel>Actions</SidebarGroupLabel>
+          <SidebarGroupLabel>{t('actions.header')}</SidebarGroupLabel>
           <SidebarGroupContent>
             <RepoActionButtons
               actions={rootActions}

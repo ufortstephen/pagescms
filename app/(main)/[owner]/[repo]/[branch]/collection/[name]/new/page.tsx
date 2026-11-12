@@ -6,6 +6,7 @@ import { DocumentTitle, formatRepoBranchTitle } from "@/components/document-titl
 import { Entry } from "@/components/entry/entry";
 import { useConfig } from "@/contexts/config-context";
 import { getSchemaByName } from "@/lib/schema";
+import { useTranslation } from 'react-i18next';
 
 export default function Page({
   params
@@ -18,6 +19,7 @@ export default function Page({
     path: string;
   }>
 }) {
+  const { t } = useTranslation();
   const resolvedParams = use(params);
   const { config } = useConfig();
   if (!config) throw new Error("Configuration not found.");
@@ -32,7 +34,7 @@ export default function Page({
       <DocumentTitle
         title={formatRepoBranchTitle(`New entry | ${displayName}`, config.owner, config.repo, config.branch)}
       />
-      <Entry name={schemaName} title="New entry" parent={parent}/>
+      <Entry name={schemaName} title={t('collection.new_entry_title')} parent={parent}/>
     </>
   );
 }

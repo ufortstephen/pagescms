@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/combobox";
 import { useConfig } from "@/contexts/config-context";
 import { getSchemaByName } from "@/lib/schema";
+import { useTranslation } from 'react-i18next';
 
 type Option = {
   value: string;
@@ -70,6 +71,7 @@ const normalizeSelected = (input: any, options: Option[], multiple: boolean) => 
 };
 
 const EditComponent = (props: any) => {
+  const { t } = useTranslation();
   const { value, field, onChange } = props;
   const { config } = useConfig();
   const anchor = useComboboxAnchor();
@@ -279,11 +281,11 @@ const EditComponent = (props: any) => {
             </ComboboxValue>
           </ComboboxChips>
           <ComboboxContent anchor={anchor}>
-            {!isLoading && <ComboboxEmpty>No options found.</ComboboxEmpty>}
+            {!isLoading && <ComboboxEmpty>{t('edit_component.no_options_found')}</ComboboxEmpty>}
             {isLoading && (
               <div className="flex items-center justify-center gap-2 py-2 text-center text-sm text-muted-foreground">
                 <Loader className="h-4 w-4 animate-spin" />
-                Loading options...
+                {t('edit_component.loading_options')}
               </div>
             )}
             <ComboboxList>
@@ -305,11 +307,11 @@ const EditComponent = (props: any) => {
             readOnly={isReadonly}
           />
           <ComboboxContent>
-            {!isLoading && <ComboboxEmpty>No options found.</ComboboxEmpty>}
+            {!isLoading && <ComboboxEmpty>{t('edit_component.no_options_found')}</ComboboxEmpty>}
             {isLoading && (
               <div className="flex items-center justify-center gap-2 py-2 text-center text-sm text-muted-foreground">
                 <Loader className="h-4 w-4 animate-spin" />
-                Loading options...
+                {t('edit_component.loading_options')}
               </div>
             )}
             <ComboboxList>

@@ -1,0 +1,534 @@
+{
+  "auth": {
+    "collaborator": {
+      "invite_unavailable": "الدعوة غير متاحة",
+      "invalid_invite_link": "رابط الدعوة هذا غير صالح."
+    }
+  },
+  "repo_actions": {
+    "access_denied_title": "تم رفض الوصول",
+    "github_users_only_description": "يمكن لمستخدمي GitHub فقط عرض سجل الإجراءات."
+  },
+  "cache": {
+    "git_users_only": "يمكن فقط مستخدمي GitHub إدارة التخزين المؤقت.",
+    "disabled_title": "التخزين المؤقت معطل",
+    "enable_instructions": "شغل التخزين المؤقت في \"\\.pages.yml\" عن طريق تعيين \"settings.cache: true\".",
+    "updating_cache": "جارٍ تحديث ذاكرة التخزين المؤقت...",
+    "page_title": "ذاكرة التخزين المؤقت",
+    "docs_link": "وثائق ذاكرة التخزين المؤقت",
+    "clear_all_button_label": "مسح ذاكرة التخزين المؤقت بالكامل",
+    "clear_all_button_title": "هل تريد مسح ذاكرة التخزين المؤقت بالكامل؟",
+    "clear_all_description": "سيؤدي هذا إلى مسح ذاكرة التخزين المؤقت للملفات والإعدادات والأذونات لهذا المستودع/الفرع.",
+    "content_card_title": "المحتوى",
+    "content_card_description": "المحتوى المخزن مؤقتًا (الملفات والمجموعات).",
+    "files_cached_label": "الملفات المخزنة مؤقتًا",
+    "folder_caches_label": "ذاكرات التخزين المؤقت للمجلدات",
+    "cache_sha": "SHA ذاكرة التخزين المؤقت",
+    "remote_sha": "SHA عن بعد",
+    "updated": "تم التحديث",
+    "last_checked": "آخر فحص",
+    "config_title": "إعداد",
+    "config_description": "ذاكرة التخزين المؤقت لملف التكوين ( <code/>).",
+    "permissions_title": "الأذونات",
+    "permissions_description": "عمليات التحقق من أذونات المستودع المخزنة مؤقتًا.",
+    "entries": "إدخالات",
+    "unknown_status": "غير معروف",
+    "unknown_error": "خطأ غير معروف في ذاكرة التخزين المؤقت",
+    "unknown_error_instructions": "حاول تحديث ذاكرة التخزين المؤقت أولاً. إذا استمرت المشكلة، فقم بمسح ذاكرة التخزين المؤقت وتحديثها مرة أخرى.",
+    "refresh_button_label": "تحديث ذاكرة التخزين المؤقت",
+    "refresh_confirm_title": "هل تريد تحديث ذاكرة التخزين المؤقت للملفات؟",
+    "refresh_confirm_description": "سيؤدي هذا إلى التحقق من SHA البعيد وتسوية ذاكرة التخزين المؤقت للملفات إذا لزم الأمر.",
+    "clear_button_label": "مسح ذاكرة التخزين المؤقت",
+    "clear_confirm_title": "هل تريد مسح ذاكرة التخزين المؤقت للملفات؟",
+    "clear_file_description": "سيؤدي هذا إلى حذف إدخالات الملفات المخزنة مؤقتًا وإعادة تعيين بيانات التعريف لذاكرة التخزين المؤقت للملفات.",
+    "refresh_config_title": "تحديث ذاكرة التخزين المؤقت للتكوين؟",
+    "refresh_config_description": "سيؤدي هذا إلى إعادة جلب التكوين المخزن مؤقتًا والتحقق من صحته.",
+    "clear_config_title": "مسح ذاكرة التخزين المؤقت للتكوين؟",
+    "clear_config_description": "سيؤدي هذا إلى إزالة التكوين المخزن مؤقتًا لهذا المستودع/الفرع.",
+    "clear_permission_title": "مسح ذاكرة التخزين المؤقت للأذونات؟",
+    "clear_permission_description": "سيؤدي هذا إلى إزالة إدخالات الأذونات المخزنة مؤقتًا لهذا المستودع."
+  },
+  "collaborators": {
+    "empty_description": "الاستخدام مقتصر على مستخدمي GitHub لإدارة المتعاونين.",
+    "invite_button": "دعوة",
+    "invite_dialog_title": "دعوة المتعاونين",
+    "invite_dialog_description": "أدخل عنوان بريد إلكتروني واحدًا أو أكثر، مفصولة بفواصل أو أسطر جديدة.",
+    "invite_textarea_placeholder": "alice@example.com, bob@example.com",
+    "heading": "المتعاونون",
+    "docs_link": "وثائق المتعاونين",
+    "empty_description_2": "لم نتمكن من تحميل قائمة المتعاونين.",
+    "avatar_alt": "صورة {{email}} الرمزية",
+    "actions_label": "إجراءات المتعاون",
+    "resend_invitation_button": "إعادة إرسال الدعوة",
+    "remove_button": "إزالة",
+    "confirm_remove_title": "هل أنت متأكد؟",
+    "confirm_remove_description": "سيؤدي هذا إلى إزالة الوصول إلى \"{{owner}}/{{repo}}\" لـ \"{{email}}\".",
+    "confirm_remove_action": "إزالة المتعاون",
+    "empty_title": "لا يوجد متعاونون",
+    "empty_description_3": "ادعُ المتعاونين لمنحهم حق الوصول إلى هذا المستودع.",
+    "send_invites_button_zero": "إرسال الدعوات",
+    "send_invites_button_one": "إرسال الدعوة",
+    "send_invites_button_two": "إرسال الدعوتين",
+    "send_invites_button_few": "إرسال الدعوات",
+    "send_invites_button_many": "إرسال الدعوات",
+    "send_invites_button_other": "إرسال الدعوات"
+  },
+  "collection": {
+    "new_entry_title": "إدخال جديد",
+    "sort_ascending_title": "فرز تصاعدي",
+    "sort_descending_title": "فرز تنازلي",
+    "clear_sort_title": "مسح الفرز",
+    "collapse_row": "طي الصف",
+    "expand_row": "توسيع الصف",
+    "no_entries": "لا توجد إدخالات",
+    "search_entries_placeholder": "ابحث في الإدخالات...",
+    "create_folder_tooltip": "إنشاء مجلد",
+    "add_entry_link": "إضافة إدخال",
+    "load_items_error": "تعذر تحميل العناصر داخل {{fileName}}: {{message}}",
+    "edit_link": "تعديل",
+    "add_children_entry_tooltip": "إضافة إدخال فرعي",
+    "rename_first_dialog_title": "هل يجب إعادة تسمية هذا الملف أولاً؟",
+    "rename_first_dialog_description_prefix": "قبل إضافة عناصر فرعية إلى هذا الملف، يجب عليك إعادة تسميته من \"",
+    "rename_first_dialog_description_suffix": "\" إلى \"",
+    "rename_dialog_action": "إعادة تسمية",
+    "show_hidden_segments_label": "إظهار المقاطع المخفية",
+    "folder_not_found_title": "المجلد غير موجود",
+    "folder_does_not_exist_description": "مجلد المجموعة \"{{path}}\" غير موجود بعد.",
+    "go_to_settings_link": "الانتقال إلى الإعدادات"
+  },
+  "configuration": {
+    "github_users_only_message": "يمكن لمستخدمي GitHub فقط إدارة تكوين المستودع.",
+    "title": "الإعدادات",
+    "docs_label": "وثائق الإعدادات",
+    "view_docs_tooltip": "عرض الوثائق"
+  },
+  "repo": {
+    "branch_not_found_title": "الفرع غير موجود",
+    "branch_not_found_description": "لم يتم العثور على الفرع \"{{decodedBranch}}\". ربما تم حذفه أو إعادة تسميته.",
+    "open_default_branch_link": "فتح الفرع الافتراضي",
+    "permission_denied_description": "ليس لديك إذن للوصول إلى هذا المستودع.",
+    "choose_another_repo_link": "اختر مستودعًا آخر",
+    "configuration_unavailable": "التكوين غير متوفر",
+    "configuration_disabled_description": "هذا المستودع غير مهيأ، وتم تعطيل الوصول إلى التكوين هنا. قم بتحرير \".pages.yml\" على GitHub إذا كنت تعتقد أن هذا خطأ.",
+    "edit_configuration_github_link": "تحرير التكوين على GitHub",
+    "repository_not_configured_title": "المستودع غير مهيأ",
+    "missing_pages_yml_description": "لا يحتوي هذا المستودع على ملف \".pages.yml\" حتى الآن. اطلب من مسؤول GitHub تهيئة التكوين أولاً.",
+    "empty_title": "المستودع فارغ",
+    "empty_description": "قم بإنشاء فرع وأضف ملف \".pages.yml\" لتكوين هذا المستودع.",
+    "not_found_title": "المستودع غير موجود",
+    "not_found_description": "ربما تم حذفه أو إعادة تسميته أو أن عنوان URL غير صحيح.",
+    "unknown_time": "وقت غير معروف",
+    "action_status_retry": "تعذر تحديث حالة الإجراء. جاري إعادة المحاولة…",
+    "starting_action": "بدء \"{{label}}\"…",
+    "view_all_actions": "عرض جميع الإجراءات",
+    "trigger_github_action_description": "سيؤدي هذا إلى تشغيل إجراء GitHub.",
+    "run_action_button": "تشغيل الإجراء",
+    "no_branches": "لا توجد فروع.",
+    "search_branches_placeholder": "ابحث عن الفروع بالاسم",
+    "no_branches_found": "لم يتم العثور على فروع.",
+    "dropdown": {
+      "author_picture_alt": "صورة المؤلف",
+      "branches_label": "الفروع",
+      "manage_branches_item": "إدارة الفروع"
+    },
+    "latest": {
+      "ago": "منذ",
+      "open_link": "فتح"
+    },
+    "recently_visited": "تمت زيارتها مؤخرًا",
+    "owner_avatar": "صورة {{owner}} الشخصية",
+    "all_projects": "جميع المشاريع",
+    "template_preview_alt": "معاينة لـ {{name}}",
+    "copy_template_button": "نسخ القالب",
+    "copy_template_description": "سيؤدي هذا إلى إنشاء نسخة من مستودع القالب أدناه ضمن الحساب المحدد.",
+    "account_label": "الحساب",
+    "name_label": "الاسم",
+    "invalid_name_error": "اسم غير صالح",
+    "create_copy_button": "إنشاء نسخة"
+  },
+  "admin": {
+    "title": "مسؤول",
+    "go_home_link": "اذهب إلى الرئيسية",
+    "overview_card_title": "نظرة عامة",
+    "overview_card_description": "مقاييس التثبيت عالية المستوى.",
+    "users_label": "المستخدمون",
+    "installs_label": "التثبيتات",
+    "configured_repos_label": "المستودعات المهيأة",
+    "cached_files_label": "الملفات المخزنة مؤقتًا",
+    "sessions_description": "ابحث وألغِ الجلسات النشطة للمستخدمين الأفراد أو للجميع دفعة واحدة.",
+    "logout_all_label": "تسجيل خروج جميع المستخدمين",
+    "logout_all_title": "تسجيل خروج جميع المستخدمين؟",
+    "logout_all_description": "سيؤدي هذا إلى إلغاء جميع الجلسات النشطة وإعادة توجيه الجميع لتسجيل الدخول مرة أخرى.",
+    "table_head_name": "الاسم",
+    "table_head_email": "البريد الإلكتروني",
+    "table_head_github": "GitHub",
+    "table_head_created": "تاريخ الإنشاء",
+    "table_head_updated": "تاريخ التحديث",
+    "no_users_found": "لم يتم العثور على مستخدمين.",
+    "showing": "عرض",
+    "of": "من",
+    "users": "المستخدمين",
+    "page_of_pages": "صفحة {{safeCurrentPage}} من {{totalUserPages}}",
+    "cache": "الذاكرة المؤقتة",
+    "cache_description": "حالة الذاكرة المؤقتة العامة عبر الملفات والإعدادات والبيانات الوصفية وعمليات التحقق من الأذونات.",
+    "cache_metadata_rows": "صفوف بيانات التعريف المؤقتة",
+    "permission_cache_rows": "صفوف ذاكرة التخزين المؤقت للأذونات",
+    "collaborator_rows": "صفوف المتعاونين",
+    "verified_users_label": "المستخدمون الموثقون",
+    "github_identities_label": "هويات GitHub",
+    "reset_cache_button": "مسح ذاكرة التخزين المؤقت",
+    "reset_cache_confirm_title": "مسح ذاكرة التخزين المؤقت؟",
+    "reset_cache_description": "سيؤدي هذا إلى مسح الملفات المخزنة مؤقتًا، والتكوين المخزن مؤقتًا، وبيانات التعريف المخزنة مؤقتًا، وذاكرة التخزين المؤقت للأذونات.",
+    "aria_label_panel": "لوحة التحكم الإدارية",
+    "user_actions_aria_label": "أجراءات المستخدم {{name}}",
+    "user_actions": {
+      "logout_dropdown": "تسجيل الخروج",
+      "logout_confirm_title": "هل تريد تسجيل خروج المستخدم؟",
+      "logout_confirm_description": "هذا سيألغ جميع جلسات المستخدم {{name}} النشطة."
+    }
+  },
+  "loading": {
+    "page_indicator": "جارٍ التحميل"
+  },
+  "page": {
+    "projects_title": "المشاريع",
+    "recently_visited_heading": "تمت زيارتها مؤخرًا",
+    "open_project_heading": "فتح مشروع",
+    "create_from_template_heading": "الإنشاء من قالب",
+    "install_github_app_empty_title": "تثبيت تطبيق GitHub",
+    "install_github_app_empty_description": "قم بتثبيت تطبيق GitHub على حساب واحد على الأقل قبل أن تتمكن من فتح أو إنشاء المشاريع.",
+    "install_github_app_link": "<svg><title>GitHub</title> <path/></svg> تثبيت تطبيق GitHub",
+    "no_repositories_yet_empty_title": "لا توجد مستودعات بعد",
+    "no_repositories_yet_empty_description": "تحتاج إلى دعوة إلى مستودع قبل أن تتمكن من التعاون. اطلب من مالك المستودع أو مسؤول المؤسسة دعوتك."
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "authentication_card_title": "المصادقة",
+    "authentication_card_description": "طرق تسجيل الدخول الخاصة بك وموفري الهوية المرتبطين بها.",
+    "installations_card_title": "التثبيتات",
+    "installations_card_description": "إدارة الحسابات التي تم تثبيت تطبيق Github عليها.",
+    "identities": {
+      "github_disconnected_message": "تم فصل حساب GitHub.",
+      "email_label": "البريد الإلكتروني",
+      "connected_status": "متصل",
+      "connect_button": "توصيل",
+      "github_actions_label": "إجراءات GitHub",
+      "manage_on_github_link": "إدارة على GitHub",
+      "disconnect_button": "فصل"
+    }
+  },
+  "error": {
+    "title": "حدث خطأ ما",
+    "try_again_button": "حاول مرة أخرى"
+  },
+  "layout": {
+    "page_title": "{{page}} | إدارة صفحات المحتوى",
+    "cms_title": "نظام إدارة الصفحات",
+    "social_card_title": "بطاقة وسائل التواصل لنظام إدارة الصفحات"
+  },
+  "not_found": {
+    "page_title": "الصفحة غير موجودة",
+    "page_description": "لم يتم العثور على الصفحة أو المورد الذي طلبته."
+  },
+  "about": {
+    "pages_cms": "حول صفحات CMS",
+    "pages_title": "نظام إدارة صفحات الويب",
+    "description": "نظام إدارة محتوى مفتوح المصدر للمواقع الثابتة. حرر مباشرة على GitHub بواجهة نظيفة.",
+    "version_label": "الإصدار",
+    "update_version": "تحديث إلى {{latestVersion}}",
+    "website_label": "الموقع الإلكتروني",
+    "docs_label": "المستندات",
+    "docs_link": "pagescms.org/docs",
+    "pagescms_link": "pagescms/pagescms"
+  },
+  "actions": {
+    "sidebar": "الشريط الجانبي",
+    "starting_action": "جارٍ بدء \"{{actionLabel}}\"…",
+    "run_cancelled": "تم إلغاء التشغيل.",
+    "header": "إجراءات",
+    "view_docs": "عرض المستندات",
+    "search_placeholder": "بحث",
+    "open_filters": "فتح الفلاتر",
+    "filters": "مرشحات",
+    "status_placeholder": "الحالة",
+    "all_statuses": "جميع الحالات",
+    "status": {
+      "succeeded": "نجاح",
+      "failed": "فشل",
+      "pending": "قيد الانتظار"
+    },
+    "filter": {
+      "action": "عملية",
+      "all_actions": "كل العمليات",
+      "triggered_by": "مستحث بواسطة",
+      "anyone": "أي شخص"
+    },
+    "reset_filters": {
+      "button": "إعادة تعيين الفلاتر"
+    },
+    "table": {
+      "context": "السياق"
+    },
+    "triggered_column_header": "تم التشغيل",
+    "triggered_by_column_header": "تم التشغيل بواسطة",
+    "ref_column_header": "مرجع",
+    "no_actions_message": "لا توجد إجراءات بعد.",
+    "no_matching_actions_message": "لا توجد إجراءات مطابقة.",
+    "run_actions_button": "تشغيل الإجراءات",
+    "view_on_github_link": "عرض على GitHub",
+    "run_again_menu_item": "إعادة التشغيل",
+    "cancel_run_menu_item": "إلغاء التشغيل"
+  },
+  "admin_confirm": {
+    "cancel_button": "إلغاء"
+  },
+  "admin_user_search": {
+    "search_placeholder": "ابحث عن المستخدمين"
+  },
+  "email": {
+    "collaborator_added": {
+      "added_to_repo_on_pages_cms": "تمت إضافتك إلى \"{{repoName}}\" على Pages CMS",
+      "pages_cms_logo_alt": "Pages CMS",
+      "added_to_repo_heading": "تمت إضافتك إلى \"{{repoName}}\"",
+      "invited_by_already_has_access": "<a>{{invitedByName}}</a> أضافك إلى مشروع \"{{repoName}}\" على Pages CMS. لديك وصول بالفعل، لذلك لا يوجد شيء لقبوله.",
+      "open_repo_button": "فتح \"{{repoName}}\"",
+      "intended_for_email": "كان هذا البريد الإلكتروني مخصصًا لـ <a>{{email}}</a>."
+    }
+  },
+  "invite": {
+    "invited_you_to_repo": "{{invitedByName}} دعاك للانضمام إلى \"{{repoName}}\"",
+    "join_repo_heading": "انضم إلى \"{{repoName}}\" على Pages CMS",
+    "invited_to_project_text": "لقد دعاك <a>{{invitedByName}}</a> للانضمام إلى مشروع \"{{repoName}}\" على Pages CMS. استخدم الرابط التالي لبدء التعاون:",
+    "join_repo_button": "انضم إلى \"{{repoName}}\"",
+    "copy_paste_url": "أو انسخ والصق عنوان URL هذا في متصفحك:",
+    "intended_for_email": "كان هذا البريد الإلكتروني مخصصًا لـ <a>{{email}}</a>. إذا كنت تعتقد أن هذا خطأ، يمكنك تجاهل هذا البريد الإلكتروني بأمان."
+  },
+  "login": {
+    "email_sign_in": "تسجيل الدخول إلى Pages CMS",
+    "verification_code_prompt": "أدخل رمز التحقق المؤقت هذا للمتابعة:",
+    "code_expiry_notice": "سينتهي صلاحية هذا الرمز خلال 5 دقائق.",
+    "email_for_sign_in": "تم إرسال هذا البريد الإلكتروني إلى <a>{{email}}</a>. إذا لم تحاول تسجيل الدخول، يمكنك تجاهل هذا البريد بأمان."
+  },
+  "empty_create": {
+    "creating": "جارٍ إنشاء {{toCreate}}...",
+    "opening": "جارٍ فتح {{toCreate}}...",
+    "created_opening": "تم إنشاء {{toCreate}}. جارٍ الفتح...",
+    "creating_short": "جارٍ الإنشاء..."
+  },
+  "entry": {
+    "remove_item_question": "هل تريد حذف هذا العنصر؟",
+    "action_cannot_undone": "لا يمكن التراجع عن هذا الإجراء.",
+    "remove_button": "حذف",
+    "remove_item_tooltip": "إزالة العنصر",
+    "required_badge": "مطلوب",
+    "readonly_badge": "قراءة فقط",
+    "collapse_all_button": "طي الكل",
+    "expand_all_button": "فتح الكل",
+    "add_item_button": "إضافة عنصر",
+    "choose_content_block": "اختر كتلة المحتوى:",
+    "remove_block_confirmation": "هل تريد حذف هذا المقطع؟",
+    "remove_block_button": "حذف المقطع",
+    "fix_errors_before_saving": "يرجى تصحيح الأخطاء قبل الحفظ.",
+    "filename_label": "اسم الملف",
+    "editing_title": "تعديل \"{{titleValue}}\"",
+    "editing_file": "تعديل \"{{fileName}}\"",
+    "save_aria_label": "حفظ",
+    "config_not_found_title": "الاعدادات غير موجودة",
+    "file_not_found_title": "الملف غير موجود",
+    "config_file_missing_desc": "لم يتم إنشاء ملف التكوين \".pages.yml\" بعد.",
+    "file_missing_desc": "لم يتم إنشاء الملف \"{{value}}\" بعد.",
+    "create_config_file": "إنشاء ملف التكوين",
+    "create_file": "إنشاء ملف",
+    "config_link": "اذهب إلى الإعدادات",
+    "disabled_title": "إنشاء المدخلات معطل",
+    "disabled_description": "لا يُسمح بإضافة مدخلات جديدة إلى هذه المجموعة.",
+    "back_to_collection": "العودة إلى المجموعة",
+    "filename_placeholder": "اسم الملف",
+    "lock_filename_aria": "قفل اسم الملف",
+    "unlock_filename_aria": "فتح قفل اسم الملف",
+    "lock_tooltip": "اسم الملف مقفل",
+    "unlock_edit_tooltip": "فتح القفل لتعديل"
+  },
+  "entry_history": {
+    "avatar_alt": "صورة رمزية لـ {{authorName}}",
+    "time_ago": "منذ {{distanceToNow}}",
+    "unknown_date": "تاريخ غير معروف",
+    "see_all_changes": "عرض جميع التغييرات"
+  },
+  "file": {
+    "rename_option": "تغيير الاسم",
+    "delete_option": "حذف",
+    "delete_confirmation_title": "هل أنت متأكد من حذف هذا الملف؟",
+    "delete_confirmation_description": "هذا سيحذف \"{{path}}\" بشكل دائم.",
+    "rename_dialog_title": "تغيير اسم الملف",
+    "rename_button": "تسمية جديدة",
+    "view_on_github_aria_label": "عرض {{fileName}} على GitHub",
+    "remove_aria_label": "إزالة {{fileName}}",
+    "remove_tooltip": "إزالة",
+    "no_media_config_found": "لم يتم العثور على تكوين وسائط. <a>تحقق من إعداداتك</a>."
+  },
+  "folder_create": {
+    "name_required_error": "اسم المجلد مطلوب.",
+    "title": "إنشاء مجلد",
+    "description": "اختر اسمًا للمجلد المراد إنشاؤه",
+    "under_value_description": "تحت \"{{value}}\"",
+    "create_button": "إنشاء"
+  },
+  "github_auth": {
+    "session_expired_title": "انتهت صلاحية جلسة GitHub",
+    "session_expired_description": "انتهت صلاحية جلسة GitHub الخاصة بك. ستحتاج إلى تسجيل الدخول مرة أخرى.",
+    "sign_in_another_way_button": "تسجيل الدخول بطريقة أخرى"
+  },
+  "invite_sign_in": {
+    "send_code_error": "تعذر إرسال رمز تسجيل الدخول.",
+    "enter_code_prompt": "أدخل الرمز المكون من 6 أرقام.",
+    "claim_invitation_error": "تعذر المطالبة بهذه الدعوة.",
+    "verify_code_error": "تعذر التحقق من الرمز.",
+    "invitation_unavailable_message": "هذه الدعوة لم تعد متاحة.",
+    "sign_in_link": "تسجيل الدخول",
+    "wrong_account_title": "حساب خاطئ",
+    "invitation_sent_to_other_account_message": "تم إرسال هذه الدعوة إلى حساب آخر.",
+    "sign_out_button": "تسجيل الخروج"
+  },
+  "media": {
+    "select_images_title": "تحديد الصور",
+    "select_button": "تحديد",
+    "upload": {
+      "invalid_file_type": "نوع الملف غير صالح. مسموح به: {{accept}}",
+      "files_skipped": "تم تخطي بعض الملفات. مسموح به: {{accept}}",
+      "drop_files_here": "أسقط الملفات هنا للتحميل"
+    },
+    "upload_button": "رفع",
+    "not_configured_title": "الوسائط غير مهيأة",
+    "not_configured_description": "لم يتم تكوين مجلد وسائط لهذا المستودع.",
+    "open_configuration_link": "فتح الإعدادات",
+    "folder_not_found_title": "مجلد الوسائط غير موجود",
+    "folder_not_found_description": "مجلد الوسائط \"{{input}}\" غير موجود بعد.",
+    "path_not_found_description": "لم يتم العثور على المجلد \"{{path}}\".",
+    "open_media_root_button": "فتح جذر الوسائط",
+    "empty_folder_title": "مجلد فارغ",
+    "empty_folder_description": "اسحب الملفات وأفلتها هنا، أو استخدم \"رفع\" لإضافة ملفات إلى هذا المجلد."
+  },
+  "otp_verification": {
+    "verify_login_heading": "تحقق من تسجيل الدخول الخاص بك",
+    "enter_code_description": "أدخل الرمز المكون من 6 أرقام المرسل إلى {{emailLabel}}.",
+    "resend_code_button": "إعادة إرسال الرمز"
+  },
+  "path_breadcrumb": {
+    "toggle_menu": "تبديل القائمة"
+  },
+  "repo_select": {
+    "login_avatar_alt": "صورة رمزية لـ {{login}}",
+    "manage_github_accounts_link": "إدارة حسابات GitHub",
+    "manage_login_installation_settings_aria_label": "إدارة إعدادات تثبيت {{login}} على GitHub",
+    "manage_github_app_tooltip": "إدارة تطبيق GitHub",
+    "search_repositories_input_placeholder": "البحث عن المستودعات بالاسم",
+    "no_projects_title": "لا توجد مشاريع",
+    "no_projects_description": "لم تتطابق أي مشاريع مع بحثك."
+  },
+  "installations": {
+    "no_account_github": "لا توجد حسابات مثبتة مع تطبيق Github.",
+    "installation_actions": "إجراءات التثبيت"
+  },
+  "profile": {
+    "updated": "تم تحديث الملف الشخصي.",
+    "title": "الملف الشخصي",
+    "description": "إدارة المعلومات المعروضة للمستخدمين الآخرين.",
+    "picture_label": "صورة",
+    "save_button": "حفظ الملف الشخصي"
+  },
+  "sign_in": {
+    "github_error": "تعذر بدء تسجيل الدخول عبر GitHub. يرجى المحاولة مرة أخرى.",
+    "invalid_email": "البريد الإلكتروني غير صالح",
+    "code_sent": "أرسلنا لك رمز تسجيل الدخول.",
+    "terms_privacy": "بالنقر على متابعة، أنت توافق على <a>شروط الخدمة</a> و <a2>سياسة الخصوصية</a2>.",
+    "github_button": "تسجيل الدخول باستخدام GitHub",
+    "or": "أو",
+    "continue_with_email": "استمر باستخدام البريد الإلكتروني"
+  },
+  "thumbnail": {
+    "alt_text": "صورة مصغرة",
+    "loading_title": "جارٍ التحميل...",
+    "no_image_title": "لا توجد صورة"
+  },
+  "ui": {
+    "breadcrumb": "مسار التنقل",
+    "more": "المزيد"
+  },
+  "dialog": {
+    "close_label": "إغلاق"
+  },
+  "editor": {
+    "block_options": {
+      "text": "نص",
+      "heading_level_1": "عنوان 1",
+      "heading_level_2": "عنوان 2",
+      "heading_level_3": "عنوان 3",
+      "bulleted_list": "قائمة بنقاط",
+      "numbered_list": "قائمة مرقمة",
+      "quote": "قتبسة",
+      "code_block": "مقطع من الكود"
+    },
+    "block_style": "نمط كتلة",
+    "image_alt_button": "نص بديل للصورة",
+    "image_alt_text_button": "نص بديل للصورة",
+    "alt_button": "بديل",
+    "describe_image_placeholder": "صف الصورة",
+    "rows_label": "الصفوف:",
+    "columns_label": "الأعمدة:",
+    "slash_command": {
+      "no_results": "لا توجد نتائج"
+    }
+  },
+  "pagination": {
+    "aria_label": "تصفح",
+    "previous_page_label": "اذهب إلى الصفحة السابقة",
+    "previous_button": "السابق",
+    "next_page_label": "اذهب إلى الصفحة التالية",
+    "next_button": "التالي",
+    "ellipsis_label": "صفحات أخرى"
+  },
+  "sidebar": {
+    "title": "اللوحة الجانبية",
+    "description": "يظهر اللوحة الجانبية للموبايل.",
+    "toggle_button": "تبديل اللوحة الجانبية"
+  },
+  "user": {
+    "theme_label": "التصميم",
+    "theme_light": "مضيء",
+    "theme_dark": "مظلم",
+    "theme_system": "نظام"
+  },
+  "action_toast": {
+    "stopped_tracking": "تم إيقاف تتبع \"{{actionLabel}}\" بعد 12 ساعة"
+  },
+  "core": {
+    "boolean": {
+      "true_badge": "صحيح",
+      "false_badge": "خطأ"
+    }
+  },
+  "image": {
+    "view_on_github": "عرض الصورة على GitHub",
+    "remove_button": "إزالة الصورة"
+  },
+  "edit_component": {
+    "no_options_found": "لم يتم العثور على خيارات.",
+    "loading_options": "جارٍ تحميل الخيارات..."
+  },
+  "rich_text": {
+    "editor_button": "محرر",
+    "source_button": "مصدر"
+  },
+  "fields": {
+    "uuid": {
+      "generate_new": "إنشاء UUID جديد",
+      "invalid": "تنسيق UUID غير صالح"
+    },
+    "required": "هذا الحقل مطلوب",
+    "number": {
+      "min": "الحد الأدنى للقيمة هو {{min}}",
+      "max": "الحد الأقصى للقيمة هو {{max}}"
+    }
+  }
+}

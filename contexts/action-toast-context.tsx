@@ -17,6 +17,7 @@ import {
   isActionRunActive,
   type ActionRunSummary,
 } from "@/lib/actions";
+import { useTranslation } from 'react-i18next';
 
 type TrackedActionToast = {
   runId: number;
@@ -66,6 +67,7 @@ const getToastMessage = (actionLabel: string, run?: ActionRunSummary | null) => 
 };
 
 export function ActionToastProvider({ children }: { children: React.ReactNode }) {
+  const { t } = useTranslation();
   const [trackedRuns, setTrackedRuns] = useState<Record<number, TrackedActionToast>>({});
   const refreshErrorToastIdRef = useRef<string | number | null>(null);
 
@@ -126,7 +128,7 @@ export function ActionToastProvider({ children }: { children: React.ReactNode })
           },
         );
         await requireApiSuccess(response, "Failed to cancel action run");
-        toast.success("Run cancelled.", { id: trackedRun.toastId });
+        toast.success(t('actions.run_cancelled'), { id: trackedRun.toastId });
       } catch (error) {
         toast.error(error instanceof Error ? error.message : "Failed to cancel action run.", { id: trackedRun.toastId });
       }
@@ -138,7 +140,7 @@ export function ActionToastProvider({ children }: { children: React.ReactNode })
 
       if (expiredEntries.length > 0) {
         expiredEntries.forEach((trackedRun) => {
-          toast.error(`Stopped tracking "${trackedRun.actionLabel}" after 12 hours.`, {
+          toast.error(t('action_toast.stopped_tracking', { actionLabel: trackedRun.actionLabel }), {
             id: trackedRun.toastId,
             action: undefined,
             classNames: undefined,

@@ -9,8 +9,10 @@ import { Button } from "@/components/ui/button"
 import { requireApiSuccess } from "@/lib/api-client";
 import { cn } from "@/lib/utils";
 import { Check, Loader } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export function RepoBranches() {
+  const { t } = useTranslation();
   const { owner, repo, branches, setBranches } = useRepo();
   const { config } = useConfig();
 
@@ -65,21 +67,21 @@ export function RepoBranches() {
   };
 
   if (!branches || branches.length === 0) {
-    return <div className="text-muted-foreground p-4">No branches.</div>;
+    return <div className="text-muted-foreground p-4">{t('repo.no_branches')}</div>;
   }
 
   return (
     <div className="flex flex-col gap-y-2">
       <header className="flex gap-x-2">
         <Input
-          placeholder="Search branches by name"
+          placeholder={t('repo.search_branches_placeholder')}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         <Button
           disabled={!search || !isValidBranchName(search) || branches.includes(search) || isSubmitting}
           onClick={handleCreateBranch}>
-          Create
+          {t('folder_create.create_button')}
           {isSubmitting && (<Loader className="ml-2 h-4 w-4 animate-spin" />)}
         </Button>
       </header>
@@ -100,7 +102,7 @@ export function RepoBranches() {
               {branch === config?.branch && <Check className="h-4 w-4 ml-auto opacity-50" />}
             </Link>
           ))
-          : <div className="text-muted-foreground py-6 text-center">No branches found.</div>
+          : <div className="text-muted-foreground py-6 text-center">{t('repo.no_branches_found')}</div>
         }
       </main>
     </div>

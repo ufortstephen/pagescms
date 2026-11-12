@@ -9,6 +9,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { useTranslation } from 'react-i18next';
 
 type OtpVerificationFormProps = {
   busy: boolean;
@@ -37,14 +38,15 @@ export function OtpVerificationForm({
   onSignInAnotherWay,
   onSubmit,
 }: OtpVerificationFormProps) {
+  const { t } = useTranslation();
   return (
     <form className="flex w-full flex-col items-center gap-6" onSubmit={onSubmit}>
       <div className="space-y-2 text-center">
         <h1 className="text-lg font-medium tracking-tight">
-          Verify your login
+          {t('otp_verification.verify_login_heading')}
         </h1>
         <p className="text-sm text-muted-foreground">
-          Enter the 6-digit code sent to {emailLabel}.
+          {t('otp_verification.enter_code_description', { emailLabel })}
         </p>
       </div>
 
@@ -79,7 +81,7 @@ export function OtpVerificationForm({
           type="button"
           variant="ghost"
         >
-          Resend code
+          {t('otp_verification.resend_code_button')}
           {resendPending && <Loader className="size-4 animate-spin" />}
         </Button>
         {onSignInAnotherWay && (
@@ -90,7 +92,7 @@ export function OtpVerificationForm({
             type="button"
             variant="ghost"
           >
-            Sign in another way
+            {t('github_auth.sign_in_another_way_button')}
           </Button>
         )}
       </div>

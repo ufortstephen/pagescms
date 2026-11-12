@@ -73,6 +73,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 const PAGE_SIZE = 25;
 const PAGE_BUTTON_COUNT = 5;
@@ -114,7 +116,7 @@ const formatContext = (
     case "file":
       return `File (${contextLabel ?? "-"})`;
     default:
-      return "Sidebar";
+      return i18next.t('actions.sidebar');
   }
 };
 
@@ -313,6 +315,7 @@ export function ActionsPage({
   actionLabels = {},
   contextLabels = {},
 }: ActionsPageProps) {
+  const { t } = useTranslation();
   const { trackActionRun } = useActionToasts();
   const [runs, setRuns] = useState<ActionRunSummary[] | null>(null);
   const [search, setSearch] = useState("");
@@ -352,7 +355,7 @@ export function ActionsPage({
 
       if (intent === "rerun" && payload.data && "id" in payload.data) {
         const actionLabel = actionLabels[run.actionName] ?? run.actionName;
-        const toastId = toast.loading(`Starting "${actionLabel}"…`);
+        const toastId = toast.loading(t('actions.starting_action', { actionLabel }));
         trackActionRun({
           runId: payload.data.id,
           owner,
@@ -362,7 +365,7 @@ export function ActionsPage({
           toastId,
         });
       } else if (intent === "cancel") {
-        toast.success("Run cancelled.");
+        toast.success(t('actions.run_cancelled'));
       }
 
       await loadRuns();
@@ -486,7 +489,7 @@ export function ActionsPage({
     () => (
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h1 className="font-semibold text-lg">Actions</h1>
+          <h1 className="font-semibold text-lg">{t('actions.header')}</h1>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -501,11 +504,11 @@ export function ActionsPage({
                   rel="noreferrer"
                 >
                   <BookText />
-                  <span className="sr-only">View docs</span>
+                  <span className="sr-only">{t('actions.view_docs')}</span>
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>View docs</TooltipContent>
+            <TooltipContent>{t('configuration.view_docs_tooltip')}</TooltipContent>
           </Tooltip>
         </div>
         <div className="flex items-center gap-2">
@@ -513,7 +516,7 @@ export function ActionsPage({
             <Input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search"
+              placeholder={t('actions.search_placeholder')}
               className="w-44"
             />
             <Popover>
@@ -522,31 +525,31 @@ export function ActionsPage({
                   <PopoverTrigger asChild>
                     <Button type="button" variant="outline" size="icon">
                       <Funnel />
-                      <span className="sr-only">Open filters</span>
+                      <span className="sr-only">{t('actions.open_filters')}</span>
                     </Button>
                   </PopoverTrigger>
                 </TooltipTrigger>
-                <TooltipContent>Filters</TooltipContent>
+                <TooltipContent>{t('actions.filters')}</TooltipContent>
               </Tooltip>
               <PopoverContent align="end" className="w-56 p-3">
                 <div className="grid gap-2">
                   <Select value={statusFilter} onValueChange={setStatusFilter}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Status" />
+                      <SelectValue placeholder={t('actions.status_placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">All statuses</SelectItem>
-                      <SelectItem value="succeeded">Succeeded</SelectItem>
-                      <SelectItem value="failed">Failed</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
+                      <SelectItem value="all">{t('actions.all_statuses')}</SelectItem>
+                      <SelectItem value="succeeded">{t('actions.status.succeeded')}</SelectItem>
+                      <SelectItem value="failed">{t('actions.status.failed')}</SelectItem>
+                      <SelectItem value="pending">{t('actions.status.pending')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <Select value={actionFilter} onValueChange={setActionFilter}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Action" />
+                      <SelectValue placeholder={t('actions.filter.action')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">All actions</SelectItem>
+                      <SelectItem value="all">{t('actions.filter.all_actions')}</SelectItem>
                       {actionOptions.map((actionName) => (
                         <SelectItem key={actionName} value={actionName}>
                           {actionLabels[actionName] ?? actionName}
@@ -559,10 +562,10 @@ export function ActionsPage({
                     onValueChange={setTriggeredByFilter}
                   >
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Triggered by" />
+                      <SelectValue placeholder={t('actions.filter.triggered_by')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">Anyone</SelectItem>
+                      <SelectItem value="all">{t('actions.filter.anyone')}</SelectItem>
                       {triggeredByOptions.map((name) => (
                         <SelectItem key={name} value={name}>
                           {name}
@@ -589,10 +592,10 @@ export function ActionsPage({
                 }}
               >
                 <CircleX />
-                <span className="sr-only">Reset filters</span>
+                <span className="sr-only">{t('actions.reset_filters.button')}</span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Reset filters</TooltipContent>
+            <TooltipContent>{t('actions.reset_filters.button')}</TooltipContent>
           </Tooltip>
         </div>
       </div>
@@ -621,11 +624,11 @@ export function ActionsPage({
         <TableHeader>
           <TableRow>
             <TableHead></TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Context</TableHead>
-            <TableHead>Triggered</TableHead>
-            <TableHead>Triggered by</TableHead>
-            <TableHead>Ref</TableHead>
+            <TableHead>{t('admin.table_head_name')}</TableHead>
+            <TableHead>{t('actions.table.context')}</TableHead>
+            <TableHead>{t('actions.triggered_column_header')}</TableHead>
+            <TableHead>{t('actions.triggered_by_column_header')}</TableHead>
+            <TableHead>{t('actions.ref_column_header')}</TableHead>
             <TableHead></TableHead>
           </TableRow>
         </TableHeader>
@@ -636,7 +639,7 @@ export function ActionsPage({
                 colSpan={7}
                 className="py-8 text-center text-muted-foreground"
               >
-                {runs.length === 0 ? "No actions yet." : "No matching actions."}
+                {runs.length === 0 ? t('actions.no_actions_message') : t('actions.no_matching_actions_message')}
               </TableCell>
             </TableRow>
           ) : (
@@ -756,7 +759,7 @@ export function ActionsPage({
                     <DropdownMenuTrigger asChild>
                       <Button variant="outline" size="icon-sm">
                         <EllipsisVertical className="size-4" />
-                        <span className="sr-only">Run actions</span>
+                        <span className="sr-only">{t('actions.run_actions_button')}</span>
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
@@ -766,7 +769,7 @@ export function ActionsPage({
                           target="_blank"
                           rel="noreferrer"
                         >
-                          View on GitHub
+                          {t('actions.view_on_github_link')}
                           <ArrowUpRight className="ml-auto size-3 text-muted-foreground" />
                         </Link>
                       </DropdownMenuItem>
@@ -775,14 +778,14 @@ export function ActionsPage({
                         disabled={!run.canRerun}
                         onClick={() => void handleRunAction(run, "rerun")}
                       >
-                        Run again
+                        {t('actions.run_again_menu_item')}
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         variant="destructive"
                         disabled={!run.canCancel}
                         onClick={() => void handleRunAction(run, "cancel")}
                       >
-                        Cancel run
+                        {t('actions.cancel_run_menu_item')}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

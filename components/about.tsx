@@ -20,6 +20,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import packageJson from "../package.json";
+import { useTranslation } from 'react-i18next';
 
 const releaseRef = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF;
 const inferredTagVersion =
@@ -31,6 +32,7 @@ const version =
 const UPDATE_DOCS_URL = "https://pagescms.org/docs";
 
 export function About() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [latestVersion, setLatestVersion] = useState<string | null>(null);
 
@@ -84,11 +86,11 @@ export function About() {
                     <path d="M0 4.8C0 2.14903 2.14903 0 4.8 0H12.0118C13.2848 0 14.5057 0.505713 15.4059 1.40589L22.5941 8.59411C23.4943 9.49429 24 10.7152 24 11.9882V19.2C24 21.851 21.851 24 19.2 24H4.8C2.14903 24 0 21.851 0 19.2V4.8Z"></path>
                   </svg>
                 </span>
-                <span className="sr-only">About Pages CMS</span>
+                <span className="sr-only">{t('about.pages_cms')}</span>
               </Button>
             </DialogTrigger>
           </TooltipTrigger>
-          <TooltipContent>About Pages CMS</TooltipContent>
+          <TooltipContent>{t('about.pages_cms')}</TooltipContent>
         </Tooltip>
       </TooltipProvider>
       <DialogContent className="w-[20rem] max-w-[calc(100vw-2rem)]">
@@ -104,17 +106,16 @@ export function About() {
             </svg>
           </div>
           <DialogTitle className="text-base font-semibold">
-            Pages CMS
+            {t('about.pages_title')}
           </DialogTitle>
           <DialogDescription>
-            Open source CMS for static sites. Edit directly on GitHub with a
-            clean interface.
+            {t('about.description')}
           </DialogDescription>
         </DialogHeader>
 
         <div className="rounded-lg border">
           <Row
-            label="Version"
+            label={t('about.version_label')}
             value={
               <div className="flex items-center gap-2">
                 <span className="text-sm">{version}</span>
@@ -129,7 +130,7 @@ export function About() {
                       variant="secondary"
                       className="bg-primary/10 font-medium text-primary"
                     >
-                      Update to {latestVersion}
+                      {t('about.update_version', { latestVersion })}
                       <ArrowUpRight className="ml-1 size-3" />
                     </Badge>
                   </a>
@@ -138,7 +139,7 @@ export function About() {
             }
           />
           <Row
-            label="Website"
+            label={t('about.website_label')}
             value={
               <ExternalLink href="https://pagescms.org">
                 pagescms.org
@@ -146,18 +147,18 @@ export function About() {
             }
           />
           <Row
-            label="Docs"
+            label={t('about.docs_label')}
             value={
               <ExternalLink href="https://pagescms.org/docs">
-                pagescms.org/docs
+                {t('about.docs_link')}
               </ExternalLink>
             }
           />
           <Row
-            label="GitHub"
+            label={t('admin.table_head_github')}
             value={
               <ExternalLink href="https://github.com/pagescms/pagescms">
-                pagescms/pagescms
+                {t('about.pagescms_link')}
               </ExternalLink>
             }
           />

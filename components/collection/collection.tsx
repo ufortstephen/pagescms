@@ -82,6 +82,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useTranslation } from 'react-i18next';
 
 type GroupTrailItem = {
   name: string;
@@ -107,6 +108,7 @@ const CollectionHeaderActions = memo(function CollectionHeaderActions({
   onFolderCreate: (entry: any) => void;
   onSearchChange: (value: string) => void;
 }) {
+  const { t } = useTranslation();
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
@@ -123,7 +125,7 @@ const CollectionHeaderActions = memo(function CollectionHeaderActions({
           className="pl-9"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          placeholder="Search entries..."
+          placeholder={t('collection.search_entries_placeholder')}
         />
       </div>
       {showFolderCreate && (
@@ -147,7 +149,7 @@ const CollectionHeaderActions = memo(function CollectionHeaderActions({
               </FolderCreate>
             </div>
           </TooltipTrigger>
-          <TooltipContent>Create folder</TooltipContent>
+          <TooltipContent>{t('collection.create_folder_tooltip')}</TooltipContent>
         </Tooltip>
       )}
       {showAddEntry && (
@@ -156,7 +158,7 @@ const CollectionHeaderActions = memo(function CollectionHeaderActions({
             className={cn(buttonVariants(), "hidden sm:flex")}
             href={addEntryHref}
           >
-            Add an entry
+            {t('collection.add_entry_link')}
           </Link>
           <Link
             className={cn(buttonVariants({ size: "icon" }), "sm:hidden shrink-0")}
@@ -171,6 +173,7 @@ const CollectionHeaderActions = memo(function CollectionHeaderActions({
 });
 
 export function Collection({ name, path }: { name: string; path?: string }) {
+  const { t } = useTranslation();
   const [tableSearch, setTableSearch] = useState("");
   const [data, setData] = useState<Record<string, any>[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -349,7 +352,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
           setError(err.message);
         } else {
           toast.error(
-            `Could not load items inside ${getFileName(fetchPath)}: ${err.message}`,
+            t('collection.load_items_error', { fileName: getFileName(fetchPath), message: err.message }),
           );
         }
         return undefined;
@@ -550,7 +553,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                 )}
                 href={`/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/collection/${name}/edit/${encodeURIComponent(row.original.path)}`}
               >
-                Edit
+                {t('collection.edit_link')}
               </Link>
               <FileOptions
                 path={row.original.path}
@@ -590,14 +593,13 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                       </Button>
                     </AlertDialogTrigger>
                   </TooltipTrigger>
-                  <TooltipContent>Add children entry</TooltipContent>
+                  <TooltipContent>{t('collection.add_children_entry_tooltip')}</TooltipContent>
                 </Tooltip>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Rename this file first?</AlertDialogTitle>
+                    <AlertDialogTitle>{t('collection.rename_first_dialog_title')}</AlertDialogTitle>
                     <AlertDialogDescription>
-                      Before adding children to this file, you must rename it
-                      from &quot;{row.original.path}&quot; to &quot;
+                      {t('collection.rename_first_dialog_description_prefix')}{row.original.path}{t('collection.rename_first_dialog_description_suffix')}
                       {row.original.path.replace(
                         `.${schema.extension}`,
                         `/${schema.view?.node?.filename}`,
@@ -606,7 +608,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel>{t('admin_confirm.cancel_button')}</AlertDialogCancel>
                     <AlertDialogAction
                       onClick={() =>
                         handleConfirmRenameNode(
@@ -618,7 +620,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                         )
                       }
                     >
-                      Rename
+                      {t('collection.rename_dialog_action')}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -643,7 +645,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                     <Plus className="size-4" />
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent>Add children entry</TooltipContent>
+                <TooltipContent>{t('collection.add_children_entry_tooltip')}</TooltipContent>
               </Tooltip>
             ))}
         </div>
@@ -770,7 +772,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                 <div className="flex gap-1 justify-end">
                   <ButtonGroup>
                     <Button variant="outline" size="sm" disabled>
-                      Edit
+                      {t('collection.edit_link')}
                     </Button>
                     <Button variant="outline" size="icon-sm" disabled>
                       <EllipsisVertical className="size-4" />
@@ -865,7 +867,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex items-center">
                     <BreadcrumbEllipsis className="size-4" />
-                    <span className="sr-only">Show hidden segments</span>
+                    <span className="sr-only">{t('collection.show_hidden_segments_label')}</span>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start">
                     {middleEntries.map((entry) => (
@@ -988,12 +990,12 @@ export function Collection({ name, path }: { name: string; path?: string }) {
         <EmptyHeader>
           <EmptyTitle>
             {error === "Not found"
-              ? "Folder not found"
-              : "Something went wrong"}
+              ? t('collection.folder_not_found_title')
+              : t('error.title')}
           </EmptyTitle>
           <EmptyDescription>
             {error === "Not found"
-              ? `The collection folder "${schema.path}" does not exist yet.`
+              ? t('collection.folder_does_not_exist_description', { path: schema.path })
               : error}
           </EmptyDescription>
         </EmptyHeader>
@@ -1001,7 +1003,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
           {error === "Not found" ? (
             canCreate ? (
               <EmptyCreate type="content" name={schema.name}>
-                Create folder
+                {t('collection.create_folder_tooltip')}
               </EmptyCreate>
             ) : null
           ) : (
@@ -1009,7 +1011,7 @@ export function Collection({ name, path }: { name: string; path?: string }) {
               className={buttonVariants({ variant: "default" })}
               href={`/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/settings`}
             >
-              Go to settings
+              {t('collection.go_to_settings_link')}
             </Link>
           )}
         </EmptyContent>

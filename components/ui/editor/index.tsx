@@ -42,6 +42,7 @@ import type {
   ImagePickerUrlResult,
   SlashImageFallback,
 } from "./slash-command/suggestion";
+import { useTranslation } from 'react-i18next';
 
 export type EditorFormat = "html" | "markdown";
 export type ImageFallbackMode = "data-url" | "prompt-url" | "none";
@@ -233,14 +234,14 @@ const normalizeMarkdownTables = (markdown: string): string =>
     .join("\n");
 
 const blockOptions: Array<{ value: BlockType; label: string }> = [
-  { value: "paragraph", label: "Text" },
-  { value: "heading1", label: "Heading 1" },
-  { value: "heading2", label: "Heading 2" },
-  { value: "heading3", label: "Heading 3" },
-  { value: "bulletList", label: "Bulleted list" },
-  { value: "orderedList", label: "Numbered list" },
-  { value: "blockquote", label: "Quote" },
-  { value: "codeBlock", label: "Code block" },
+  { value: "paragraph", label: "editor.block_options.text" },
+  { value: "heading1", label: "editor.block_options.heading_level_1" },
+  { value: "heading2", label: "editor.block_options.heading_level_2" },
+  { value: "heading3", label: "editor.block_options.heading_level_3" },
+  { value: "bulletList", label: "editor.block_options.bulleted_list" },
+  { value: "orderedList", label: "editor.block_options.numbered_list" },
+  { value: "blockquote", label: "editor.block_options.quote" },
+  { value: "codeBlock", label: "editor.block_options.code_block" },
 ];
 
 export function Editor({
@@ -259,6 +260,7 @@ export function Editor({
   editorClassName,
   ...props
 }: EditorProps) {
+  const { t } = useTranslation();
   const [showLinkInput, setShowLinkInput] = useState(false);
   const [showTableActions, setShowTableActions] = useState(false);
   const [showAltInput, setShowAltInput] = useState(false);
@@ -947,12 +949,12 @@ export function Editor({
                   value={activeState.blockType}
                   onChange={(event) => setBlockType(event.target.value as BlockType)}
                   disabled={disabled}
-                  aria-label="Block style"
+                  aria-label={t('editor.block_style')}
                   className="h-7 w-full appearance-none rounded-md border border-transparent bg-transparent px-2 pr-5.5 text-sm shadow-none outline-none hover:bg-accent focus-visible:outline-none focus-visible:ring-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {blockOptions.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.label}
+                      {t(option.label)}
                     </option>
                   ))}
                 </select>
@@ -983,14 +985,14 @@ export function Editor({
             {isOnImage ? (
               <button
                 type="button"
-                aria-label="Image alt text"
-                title="Image alt text"
+                aria-label={t('editor.image_alt_button')}
+                title={t('editor.image_alt_text_button')}
                 aria-pressed={showAltInput}
                 onClick={toggleAltInput}
                 disabled={disabled}
                 className={`${toolbarToggleButtonClass} size-7 text-xs`}
               >
-                ALT
+                {t('editor.alt_button')}
               </button>
             ) : null}
             {isInTable
@@ -1049,7 +1051,7 @@ export function Editor({
               <input
                 id="image-alt"
                 type="text"
-                placeholder="Describe image"
+                placeholder={t('editor.describe_image_placeholder')}
                 value={imageAltText}
                 onChange={(event) => setImageAltText(event.target.value)}
                 onKeyDown={(event) => {
@@ -1082,7 +1084,7 @@ export function Editor({
               data-state="open"
               className="border-border bg-popover data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-top-1 inline-flex w-fit flex-nowrap items-center gap-1 overflow-x-auto self-end rounded-md border p-1 shadow-sm duration-200 whitespace-nowrap"
             >
-              <span className="text-sm ml-1 text-muted-foreground">Rows:</span>
+              <span className="text-sm ml-1 text-muted-foreground">{t('editor.rows_label')}</span>
               {renderIconButton({
                 label: "Add row",
                 icon: Plus,
@@ -1096,7 +1098,7 @@ export function Editor({
                 disabled,
               })}
               <span className="bg-border mx-0.5 h-4 w-px" aria-hidden="true" />
-              <span className="text-sm text-muted-foreground">Columns:</span>
+              <span className="text-sm text-muted-foreground">{t('editor.columns_label')}</span>
               {renderIconButton({
                 label: "Add column",
                 icon: Plus,

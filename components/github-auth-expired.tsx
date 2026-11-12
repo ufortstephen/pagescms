@@ -6,8 +6,10 @@ import { getSafeRedirect } from "@/lib/auth-redirect";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Loader } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const GithubAuthExpired = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
   const handleSignInAgain = async () => {
@@ -28,11 +30,11 @@ const GithubAuthExpired = () => {
   return (
     <Empty className="absolute inset-0 border-0 rounded-none">
       <EmptyHeader>
-        <EmptyTitle>GitHub session expired</EmptyTitle>
-        <EmptyDescription>Your GitHub session has expired. You&apos;ll need to sign in again.</EmptyDescription>
+        <EmptyTitle>{t('github_auth.session_expired_title')}</EmptyTitle>
+        <EmptyDescription>{t('github_auth.session_expired_description')}</EmptyDescription>
         <Button variant="ghost" onClick={handleSignInAgain} disabled={loading}>
           <ArrowLeft className="size-4" />
-          Sign in another way
+          {t('github_auth.sign_in_another_way_button')}
           {loading && <Loader className="size-4 animate-spin" />}
         </Button>
       </EmptyHeader>

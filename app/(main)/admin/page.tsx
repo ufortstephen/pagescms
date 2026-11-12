@@ -53,6 +53,7 @@ import {
 } from "@/components/ui/pagination";
 import { getInitialsFromName } from "@/lib/utils/avatar";
 import { cn } from "@/lib/utils";
+import { getTranslation } from '../../../i18n.server';
 
 const formatDateTime = (value: Date | string | null | undefined) => {
   if (!value) return "-";
@@ -104,6 +105,7 @@ export default async function Page({
 }: {
   searchParams?: Promise<{ q?: string; page?: string }>;
 }) {
+  const { t } = await getTranslation();
   await requireAdminSession();
   const nowMs = Date.now();
   const resolvedSearchParams = await searchParams;
@@ -175,7 +177,7 @@ export default async function Page({
 
   return (
     <MainRootLayout>
-      <DocumentTitle title="Admin" />
+      <DocumentTitle title={t('admin.title')} />
       <div className="max-w-screen-lg mx-auto p-4 md:p-6 space-y-6">
         <Link
           className={cn(
@@ -185,37 +187,37 @@ export default async function Page({
           href="/"
         >
           <ArrowLeft />
-          Go home
+          {t('admin.go_home_link')}
         </Link>
 
         <header>
           <h1 className="font-semibold tracking-tight text-lg md:text-2xl">
-            Admin
+            {t('admin.title')}
           </h1>
         </header>
 
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Overview</CardTitle>
-              <CardDescription>High-level installation metrics.</CardDescription>
+              <CardTitle>{t('admin.overview_card_title')}</CardTitle>
+              <CardDescription>{t('admin.overview_card_description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-4 md:grid-cols-4">
                 <div className="md:pr-4 md:border-r">
-                  <div className="mb-1.5 text-sm text-muted-foreground">Users</div>
+                  <div className="mb-1.5 text-sm text-muted-foreground">{t('admin.users_label')}</div>
                   <div className="text-3xl font-semibold tracking-tight">{formatCompactNumber(userCount?.count ?? 0)}</div>
                 </div>
                 <div className="md:px-4 md:border-r">
-                  <div className="mb-1.5 text-sm text-muted-foreground">Installs</div>
+                  <div className="mb-1.5 text-sm text-muted-foreground">{t('admin.installs_label')}</div>
                   <div className="text-3xl font-semibold tracking-tight">{formatCompactNumber(installCount?.count ?? 0)}</div>
                 </div>
                 <div className="md:px-4 md:border-r">
-                  <div className="mb-1.5 text-sm text-muted-foreground">Configured repos</div>
+                  <div className="mb-1.5 text-sm text-muted-foreground">{t('admin.configured_repos_label')}</div>
                   <div className="text-3xl font-semibold tracking-tight">{formatCompactNumber(repoCount?.count ?? 0)}</div>
                 </div>
                 <div className="md:pl-4">
-                  <div className="mb-1.5 text-sm text-muted-foreground">Cached files</div>
+                  <div className="mb-1.5 text-sm text-muted-foreground">{t('admin.cached_files_label')}</div>
                   <div className="text-3xl font-semibold tracking-tight">{formatCompactNumber(cacheFileCount?.count ?? 0)}</div>
                 </div>
               </div>
@@ -224,9 +226,9 @@ export default async function Page({
 
           <Card>
             <CardHeader>
-              <CardTitle>Users</CardTitle>
+              <CardTitle>{t('admin.users_label')}</CardTitle>
               <CardDescription>
-                Search and revoke active sessions for individual users or everyone at once.
+                {t('admin.sessions_description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -234,9 +236,9 @@ export default async function Page({
                 <AdminUserSearch initialQuery={query} />
                 <AdminConfirmActionButton
                   action={logoutAllUsers}
-                  label="Log out all users"
-                  title="Log out all users?"
-                  description="This will revoke every active session and redirect everyone to sign in again."
+                  label={t('admin.logout_all_label')}
+                  title={t('admin.logout_all_title')}
+                  description={t('admin.logout_all_description')}
                   confirmLabel="Log out all"
                   variant="outline"
                   size="sm"
@@ -246,11 +248,11 @@ export default async function Page({
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-10 min-w-10" />
-                    <TableHead>Name</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>GitHub</TableHead>
-                    <TableHead className="w-24 min-w-24">Created</TableHead>
-                    <TableHead className="w-24 min-w-24">Updated</TableHead>
+                    <TableHead>{t('admin.table_head_name')}</TableHead>
+                    <TableHead>{t('admin.table_head_email')}</TableHead>
+                    <TableHead>{t('admin.table_head_github')}</TableHead>
+                    <TableHead className="w-24 min-w-24">{t('admin.table_head_created')}</TableHead>
+                    <TableHead className="w-24 min-w-24">{t('admin.table_head_updated')}</TableHead>
                     <TableHead className="w-12 min-w-12" />
                   </TableRow>
                 </TableHeader>
@@ -314,7 +316,7 @@ export default async function Page({
                   ) : (
                     <TableRow>
                       <TableCell colSpan={7} className="text-center text-muted-foreground">
-                        No users found.
+                        {t('admin.no_users_found')}
                       </TableCell>
                     </TableRow>
                   )}
@@ -322,7 +324,7 @@ export default async function Page({
               </Table>
               <div className="mt-4 flex items-center justify-between gap-4 text-sm text-muted-foreground">
                 <div>
-                  Showing {users.length} of {filteredUserCount?.count ?? 0} users
+                  {t('admin.showing')} {users.length} {t('admin.of')} {filteredUserCount?.count ?? 0} {t('admin.users')}
                 </div>
                 <Pagination className="mx-0 w-auto justify-end">
                   <PaginationContent>
@@ -336,7 +338,7 @@ export default async function Page({
                     </PaginationItem>
                     <PaginationItem>
                       <span className="px-2 text-xs">
-                        Page {safeCurrentPage} of {totalUserPages}
+                        {t('admin.page_of_pages', { safeCurrentPage, totalUserPages })}
                       </span>
                     </PaginationItem>
                     <PaginationItem>
@@ -355,35 +357,35 @@ export default async function Page({
 
           <Card>
             <CardHeader>
-              <CardTitle>Cache</CardTitle>
+              <CardTitle>{t('admin.cache')}</CardTitle>
               <CardDescription>
-                Global cache state across files, config, metadata, and permission checks.
+                {t('admin.cache_description')}
               </CardDescription>
             </CardHeader>
             <CardContent className="text-sm flex-1">
               <div className="grid rounded-md border md:grid-cols-2">
                 <div className="flex items-center justify-between gap-3 px-3 py-2 md:border-r md:border-b">
-                  <span className="text-muted-foreground">Cached files</span>
+                  <span className="text-muted-foreground">{t('admin.cached_files_label')}</span>
                   <span className="font-medium">{cacheFileCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-r md:border-t-0 md:border-b">
-                  <span className="text-muted-foreground">Cache metadata rows</span>
+                  <span className="text-muted-foreground">{t('admin.cache_metadata_rows')}</span>
                   <span className="font-medium">{cacheMetaCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-r md:border-t-0 md:border-b">
-                  <span className="text-muted-foreground">Permission cache rows</span>
+                  <span className="text-muted-foreground">{t('admin.permission_cache_rows')}</span>
                   <span className="font-medium">{cachePermissionCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-t-0 md:border-b">
-                  <span className="text-muted-foreground">Collaborator rows</span>
+                  <span className="text-muted-foreground">{t('admin.collaborator_rows')}</span>
                   <span className="font-medium">{collaboratorCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-r md:border-t-0">
-                  <span className="text-muted-foreground">Verified users</span>
+                  <span className="text-muted-foreground">{t('admin.verified_users_label')}</span>
                   <span className="font-medium">{verifiedUserCount?.count ?? 0}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 border-t px-3 py-2 md:border-t-0">
-                  <span className="text-muted-foreground">GitHub identities</span>
+                  <span className="text-muted-foreground">{t('admin.github_identities_label')}</span>
                   <span className="font-medium">{githubUserCount?.count ?? 0}</span>
                 </div>
               </div>
@@ -391,9 +393,9 @@ export default async function Page({
             <CardFooter className="flex justify-end">
               <AdminConfirmActionButton
                 action={resetGlobalCache}
-                label="Reset cache"
-                title="Reset cache?"
-                description="This will clear cached files, cached config, cache metadata, and permission cache."
+                label={t('admin.reset_cache_button')}
+                title={t('admin.reset_cache_confirm_title')}
+                description={t('admin.reset_cache_description')}
                 confirmLabel="Reset"
                 variant="outline"
                 size="sm"

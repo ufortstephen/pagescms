@@ -28,8 +28,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ChevronsUpDown, ArrowUpRight } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
+  const { t } = useTranslation();
   const { user } = useUser();
   const router = useRouter();
   const dialogCloseRef = useRef<any>(null);
@@ -122,7 +124,7 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
                 <button className="border rounded-md overflow-hidden hover:cursor-pointer hover:bg-accent ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
                   <img
                     src={template.thumbnail}
-                    alt={`Preview for ${template.name}`}
+                    alt={t('repo.template_preview_alt', { name: template.name })}
                     className="aspect-video"
                   />
                   <div className="flex gap-x-2 items-center px-3 py-2 border-t border-t-accent text-sm">
@@ -137,10 +139,9 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
               <DialogContent className="sm:max-w-[425px]">
                 <form action={copyTemplateAction} className="grid gap-4">
                   <DialogHeader>
-                    <DialogTitle>Copy template</DialogTitle>
+                    <DialogTitle>{t('repo.copy_template_button')}</DialogTitle>
                     <DialogDescription>
-                      This will create a copy of the template repository below
-                      under the selected account.
+                      {t('repo.copy_template_description')}
                     </DialogDescription>
                   </DialogHeader>
                   <a
@@ -150,7 +151,7 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
                   >
                     <img
                       src={template.thumbnail}
-                      alt={`Preview for ${template.name}`}
+                      alt={t('repo.template_preview_alt', { name: template.name })}
                       className="aspect-video h-20"
                     />
                     <div className="flex-1 text-left flex flex-col gap-y-1 truncate px-3 py-2 h-full justify-center border-l border-l-accent">
@@ -180,7 +181,7 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
                     />
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="name" className="text-right">
-                        Account
+                        {t('repo.account_label')}
                       </Label>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -188,7 +189,7 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
                             <img
                               className="h-6 w-6 rounded mr-2"
                               src={`https://github.com/${selectedAccount.login}.png`}
-                              alt={`${selectedAccount.login}'s avatar`}
+                              alt={t('repo_select.login_avatar_alt', { login: selectedAccount.login })}
                             />
                             <div>{selectedAccount.login}</div>
                             <ChevronsUpDown className="ml-auto h-4 w-4 opacity-50" />
@@ -206,7 +207,7 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
                               <img
                                 className="h-6 w-6 rounded mr-2"
                                 src={`https://github.com/${account.login}.png`}
-                                alt={`${account.login}'s avatar`}
+                                alt={t('repo_select.login_avatar_alt', { login: account.login })}
                               />
                               {account.login}
                             </DropdownMenuItem>
@@ -219,7 +220,7 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
                         htmlFor="name"
                         className="h-10 inline-flex items-center justify-end"
                       >
-                        Name
+                        {t('repo.name_label')}
                       </Label>
                       <div className="col-span-3">
                         <Input
@@ -235,7 +236,7 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
                         )}
                         {!isValidName && (
                           <div className="text-sm font-medium text-destructive mt-2 ">
-                            Invalid name
+                            {t('repo.invalid_name_error')}
                           </div>
                         )}
                       </div>
@@ -244,7 +245,7 @@ export function RepoTemplates({ defaultAccount }: { defaultAccount?: any }) {
                   <DialogFooter>
                     <DialogClose ref={dialogCloseRef}></DialogClose>
                     <SubmitButton type="submit" disabled={!isValidName}>
-                      Create copy
+                      {t('repo.create_copy_button')}
                     </SubmitButton>
                   </DialogFooter>
                 </form>

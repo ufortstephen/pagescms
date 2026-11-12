@@ -19,8 +19,10 @@ import {
 } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getTranslation } from '../../../i18n.server';
 
 export default async function Page() {
+  const { t } = await getTranslation();
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -39,7 +41,7 @@ export default async function Page() {
 
   return (
     <MainRootLayout>
-      <DocumentTitle title="Settings" />
+      <DocumentTitle title={t('settings.title')} />
       <div className="max-w-screen-sm mx-auto p-4 md:p-6 space-y-6">
         <Link
           className={cn(
@@ -49,11 +51,11 @@ export default async function Page() {
           href="/"
         >
           <ArrowLeft />
-          Go home
+          {t('admin.go_home_link')}
         </Link>
         <header className="flex items-center mb-6">
           <h1 className="font-semibold tracking-tight text-lg md:text-2xl">
-            Settings
+            {t('settings.title')}
           </h1>
         </header>
         <div className="flex flex-col relative flex-1 space-y-6">
@@ -65,9 +67,9 @@ export default async function Page() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Authentication</CardTitle>
+              <CardTitle>{t('settings.authentication_card_title')}</CardTitle>
               <CardDescription>
-                Your sign-in methods and linked identity providers.
+                {t('settings.authentication_card_description')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -84,10 +86,10 @@ export default async function Page() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base md:text-lg">
-                  Installations
+                  {t('settings.installations_card_title')}
                 </CardTitle>
                 <CardDescription>
-                  Manage the accounts the Github application is installed on.
+                  {t('settings.installations_card_description')}
                 </CardDescription>
               </CardHeader>
               <CardContent>

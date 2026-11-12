@@ -26,6 +26,7 @@ import {
 import { toast } from "sonner";
 import { ArrowUpRight } from "lucide-react";
 import { FileRename } from "@/components/file/file-rename";
+import { useTranslation } from 'react-i18next';
 
 export function FileOptions({
   path,
@@ -50,6 +51,7 @@ export function FileOptions({
   onRename?: (path: string, newPath: string) => void;
   children: React.ReactNode;
 }) {
+  const { t } = useTranslation();
   const { config } = useConfig();
   if (!config) throw new Error(`Configuration not found.`);
 
@@ -117,7 +119,7 @@ export function FileOptions({
           <DropdownMenuContent align="end" portalProps={portalProps}>
             <DropdownMenuItem asChild>
               <a href={`https://github.com/${config.owner}/${config.repo}/blob/${encodeURIComponent(config.branch)}/${path}`} target="_blank">
-                View on GitHub
+                {t('actions.view_on_github_link')}
                 <ArrowUpRight className="size-3 text-muted-foreground ml-auto" />
               </a>
             </DropdownMenuItem>
@@ -126,13 +128,13 @@ export function FileOptions({
                   <DropdownMenuSeparator />
                   {showRename &&
                     <DropdownMenuItem onSelect={() => setIsRenameOpen(true)}>
-                      Rename
+                      {t('file.rename_option')}
                     </DropdownMenuItem>
                   }
                   {showDelete && (
                     <AlertDialogTrigger asChild>
                       <DropdownMenuItem variant="destructive">
-                        Delete
+                        {t('file.delete_option')}
                       </DropdownMenuItem>
                     </AlertDialogTrigger>
                   )}
@@ -142,12 +144,12 @@ export function FileOptions({
           </DropdownMenuContent>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you sure you want to delete this file?</AlertDialogTitle>
-              <AlertDialogDescription>This will premanently delete &quot;{path}&quot;.</AlertDialogDescription>
+              <AlertDialogTitle>{t('file.delete_confirmation_title')}</AlertDialogTitle>
+              <AlertDialogDescription>{t('file.delete_confirmation_description', { path })}</AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleConfirmDelete}>Delete</AlertDialogAction>
+              <AlertDialogCancel>{t('admin_confirm.cancel_button')}</AlertDialogCancel>
+              <AlertDialogAction onClick={handleConfirmDelete}>{t('file.delete_option')}</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </DropdownMenu>

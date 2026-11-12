@@ -8,6 +8,7 @@ import { getSchemaByName } from "@/lib/schema";
 import { cn } from "@/lib/utils";
 import { requireApiSuccess } from "@/lib/api-client";
 import type { FileSaveData } from "@/types/api";
+import { useTranslation } from 'react-i18next';
 
 interface MediaUploadContextValue {
   handleFiles: (files: File[]) => Promise<void>;
@@ -130,6 +131,7 @@ function MediaUploadRoot({ children, path, onUpload, media, extensions, multiple
 }
 
 function MediaUploadTrigger({ children }: MediaUploadTriggerProps) {
+  const { t } = useTranslation();
   const context = useContext(MediaUploadContext);
   if (!context) throw new Error("MediaUploadTrigger must be used within a MediaUpload component");
   
@@ -145,12 +147,12 @@ function MediaUploadTrigger({ children }: MediaUploadTriggerProps) {
     });
 
     if (validFiles.length === 0) {
-      toast.error(`Invalid file type. Allowed: ${context.accept}`);
+      toast.error(t('media.upload.invalid_file_type', { accept: context.accept }));
       return [];
     }
 
     if (validFiles.length !== files.length) {
-      toast.error(`Some files were skipped. Allowed: ${context.accept}`);
+      toast.error(t('media.upload.files_skipped', { accept: context.accept }));
     }
 
     return validFiles;
@@ -188,6 +190,7 @@ function MediaUploadTrigger({ children }: MediaUploadTriggerProps) {
 }
 
 function MediaUploadDropZone({ children, className }: MediaUploadDropZoneProps) {
+  const { t } = useTranslation();
   const context = useContext(MediaUploadContext);
   if (!context) throw new Error("MediaUploadDropZone must be used within a MediaUpload component");
   
@@ -203,12 +206,12 @@ function MediaUploadDropZone({ children, className }: MediaUploadDropZoneProps) 
     });
 
     if (validFiles.length === 0) {
-      toast.error(`Invalid file type. Allowed: ${context.accept}`);
+      toast.error(t('media.upload.invalid_file_type', { accept: context.accept }));
       return [];
     }
 
     if (validFiles.length !== files.length) {
-      toast.error(`Some files were skipped. Allowed: ${context.accept}`);
+      toast.error(t('media.upload.files_skipped', { accept: context.accept }));
     }
 
     return validFiles;
@@ -251,7 +254,7 @@ function MediaUploadDropZone({ children, className }: MediaUploadDropZoneProps) 
       {!context.disabled && isDragging && (
         <div className="absolute inset-0 bg-primary/10 rounded-lg flex items-center justify-center">
           <p className="text-sm text-foreground font-medium bg-background rounded-full px-3 py-1">
-            Drop files here to upload
+            {t('media.upload.drop_files_here')}
           </p>
         </div>
       )}

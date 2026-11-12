@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from "react";
 import {
   Body,
@@ -13,6 +15,7 @@ import {
   Tailwind,
 } from "@react-email/components";
 import { emailTheme } from "@/components/email/theme";
+import { useTranslation, Trans } from 'react-i18next';
 
 export const LoginEmailTemplate = ({
   email,
@@ -23,6 +26,7 @@ export const LoginEmailTemplate = ({
   otp: string;
   preview?: string;
 }) => {
+  const { t } = useTranslation();
   const baseUrl = process.env.BASE_URL
     ? process.env.BASE_URL
     : process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -47,7 +51,7 @@ export const LoginEmailTemplate = ({
                 src={`${baseUrl}/images/email-logo.png`}
                 width="42"
                 height="42"
-                alt="Pages CMS"
+                alt={t('email.collaborator_added.pages_cms_logo_alt')}
                 className="my-0 mx-auto"
               />
             </Section>
@@ -55,13 +59,13 @@ export const LoginEmailTemplate = ({
               className="text-[24px] font-semibold p-0 my-[30px] mx-0 text-center tracking-tight"
               style={{ color: emailTheme.foreground }}
             >
-              Sign in to Pages CMS
+              {t('login.email_sign_in')}
             </Heading>
             <Text
               className="text-[16px] leading-[24px]"
               style={{ color: emailTheme.foreground }}
             >
-              Enter this temporary verification code to continue:
+              {t('login.verification_code_prompt')}
             </Text>
             <Section className="text-center mt-[24px] mb-[24px]">
               <pre
@@ -85,22 +89,16 @@ export const LoginEmailTemplate = ({
               className="text-[16px] leading-[24px]"
               style={{ color: emailTheme.foreground }}
             >
-              This code will expire in 5 minutes.
+              {t('login.code_expiry_notice')}
             </Text>
             <Text
               className="text-[14px] leading-[24px] mt-[36px]"
               style={{ color: emailTheme.mutedForeground }}
             >
-              This email was intended for{" "}
-              <Link
+              <Trans i18nKey="login.email_for_sign_in" components={{ a: <Link
                 href={`mailto:${email}`}
                 className="underline"
-                style={{ color: emailTheme.mutedLink }}
-              >
-                {email}
-              </Link>
-              . If you didn&apos;t try to sign in, you can safely ignore this
-              email.
+                style={{ color: emailTheme.mutedLink }} /> }} values={{ email }} />
             </Text>
           </Container>
         </Body>

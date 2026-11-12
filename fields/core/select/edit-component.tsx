@@ -15,6 +15,7 @@ import {
   ComboboxValue,
   useComboboxAnchor,
 } from "@/components/ui/combobox";
+import { useTranslation } from 'react-i18next';
 
 type Option = {
   value: string;
@@ -34,6 +35,7 @@ const normalizeOption = (option: any): Option => {
 };
 
 const EditComponent = (props: any) => {
+  const { t } = useTranslation();
   const { value, field, onChange } = props;
   const isReadonly = Boolean(field?.readonly);
   const multiple = Boolean(field.options?.multiple);
@@ -135,7 +137,7 @@ const EditComponent = (props: any) => {
             </ComboboxValue>
           </ComboboxChips>
           <ComboboxContent anchor={anchor}>
-            <ComboboxEmpty>No options found.</ComboboxEmpty>
+            <ComboboxEmpty>{t('edit_component.no_options_found')}</ComboboxEmpty>
             <ComboboxList>
               {(option: Option) => (
                 <ComboboxItem key={option.value} value={option}>
@@ -154,7 +156,7 @@ const EditComponent = (props: any) => {
             readOnly={isReadonly}
           />
           <ComboboxContent>
-            <ComboboxEmpty>No options found.</ComboboxEmpty>
+            <ComboboxEmpty>{t('edit_component.no_options_found')}</ComboboxEmpty>
             <ComboboxList>
               {(option: Option) => (
                 <ComboboxItem key={option.value} value={option}>

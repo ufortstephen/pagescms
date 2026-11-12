@@ -9,6 +9,7 @@ import { getSchemaByName, initializeState } from "@/lib/schema";
 import { requireApiSuccess } from "@/lib/api-client";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useTranslation } from 'react-i18next';
 
 const EmptyCreate = ({
   children,
@@ -21,6 +22,7 @@ const EmptyCreate = ({
   name?: string;
   onCreate?: (path: string) => void;
 }) => {
+  const { t } = useTranslation();
   const { config } = useConfig();
   if (!config) throw new Error(`Configuration not found.`);
 
@@ -69,7 +71,7 @@ const EmptyCreate = ({
   const handleCreate = async () => {
     if (isCreating) return;
     setIsCreating(true);
-    const toastId = toast.loading(`Creating ${toCreate}...`);
+    const toastId = toast.loading(t('empty_create.creating', { toCreate }));
 
     try {
       const response = await fetch(`/api/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/files/${encodeURIComponent(normalizePath(path))}`, {
@@ -87,12 +89,12 @@ const EmptyCreate = ({
         `Failed to create ${toCreate}`,
       );
 
-      toast.loading(`Opening ${toCreate}...`, { id: toastId });
+      toast.loading(t('empty_create.opening', { toCreate }), { id: toastId });
       onCreate?.(normalizePath(path));
       // Navigate immediately so destination route can render its loading skeleton.
       router.push(`${redirectTo}?empty-created`);
       router.refresh();
-      toast.success(`Created ${toCreate}. Opening...`, { id: toastId });
+      toast.success(t('empty_create.created_opening', { toCreate }), { id: toastId });
     } catch (error) {
       setIsCreating(false);
       toast.error(error instanceof Error ? error.message : `Failed to create ${toCreate}.`, {
@@ -105,7 +107,7 @@ const EmptyCreate = ({
     <Button type="button" onClick={handleCreate} disabled={isCreating}>
       {isCreating ? (
         <span className="inline-flex items-center gap-x-2">
-          Creating...
+          {t('empty_create.creating_short')}
           <LucideLoader className="h-4 w-4 animate-spin" />
         </span>
       ) : children}

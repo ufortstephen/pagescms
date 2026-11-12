@@ -88,6 +88,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { interpolate } from "@/lib/schema";
+import { useTranslation } from 'react-i18next';
 
 type BeforeSubmitHook = () => void | Promise<void>;
 type RegisterBeforeSubmitHook = (
@@ -242,6 +243,7 @@ const ListItemRow = memo(function ListItemRow({
   onRemoveConfirm: (index: number) => void;
   onPendingRemoveChange: (index: number, open: boolean) => void;
 }) {
+  const { t } = useTranslation();
   const isReadonly = Boolean(field.readonly);
   return (
     <SortableItem id={id} readonly={isReadonly}>
@@ -279,20 +281,20 @@ const ListItemRow = memo(function ListItemRow({
             </TooltipTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Remove this item?</AlertDialogTitle>
+                <AlertDialogTitle>{t('entry.remove_item_question')}</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This action cannot be undone.
+                  {t('entry.action_cannot_undone')}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogCancel>{t('admin_confirm.cancel_button')}</AlertDialogCancel>
                 <AlertDialogAction onClick={() => onRemoveConfirm(index)}>
-                  Remove
+                  {t('entry.remove_button')}
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
-          <TooltipContent>Remove item</TooltipContent>
+          <TooltipContent>{t('entry.remove_item_tooltip')}</TooltipContent>
         </Tooltip>
       )}
     </SortableItem>
@@ -312,6 +314,7 @@ const ListField = ({
   registerBeforeSubmitHook?: RegisterBeforeSubmitHook;
   runBeforeSubmitHooks?: () => Promise<void>;
 }) => {
+  const { t } = useTranslation();
   const supportsItemCollapse =
     field.type === "object" || field.type === "block";
   const isCollapsible = !!(
@@ -475,13 +478,13 @@ const ListField = ({
               {field.required && (
                 <Badge variant="secondary" className="text-muted-foreground">
                   <Asterisk className="-ml-1 -mr-0.5" />
-                  Required
+                  {t('entry.required_badge')}
                 </Badge>
               )}
               {hasExplicitReadonly(field) && (
                 <Badge variant="secondary" className="text-muted-foreground">
                   <Ban className="-ml-0.5" />
-                  Readonly
+                  {t('entry.readonly_badge')}
                 </Badge>
               )}
               {isCollapsible &&
@@ -498,7 +501,7 @@ const ListField = ({
                       onClick={() => toggleAll(isAllExpanded)}
                     >
                       {isAllExpanded ? <ChevronsDownUp /> : <ChevronsUpDown />}
-                      {isAllExpanded ? "Collapse all" : "Expand all"}
+                      {isAllExpanded ? t('entry.collapse_all_button') : t('entry.expand_all_button')}
                     </Button>
                   );
                 })()}
@@ -546,7 +549,7 @@ const ListField = ({
                   onClick={addItem}
                 >
                   <Plus />
-                  Add an item
+                  {t('entry.add_item_button')}
                 </Button>
               )}
             </div>
@@ -560,6 +563,7 @@ const ListField = ({
 
 const BlocksField = forwardRef<HTMLDivElement, NestedFieldProps>(
   (props, ref) => {
+    const { t } = useTranslation();
     const {
       field,
       fieldName,
@@ -628,7 +632,7 @@ const BlocksField = forwardRef<HTMLDivElement, NestedFieldProps>(
       <div className="space-y-3" ref={ref as React.Ref<HTMLDivElement>}>
         {!selectedBlockDefinition ? (
           <div className="rounded-lg border p-4 space-y-4">
-            <div className="text-sm">Choose content block:</div>
+            <div className="text-sm">{t('entry.choose_content_block')}</div>
             <div className="flex flex-wrap gap-2">
               {blocks.map((blockDef: Field) => (
                 <Button
@@ -704,26 +708,26 @@ const BlocksField = forwardRef<HTMLDivElement, NestedFieldProps>(
                       >
                         <AlertDialogHeader>
                           <AlertDialogTitle>
-                            Remove this block?
+                            {t('entry.remove_block_confirmation')}
                           </AlertDialogTitle>
                           <AlertDialogDescription>
-                            This action cannot be undone.
+                            {t('entry.action_cannot_undone')}
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogCancel>{t('admin_confirm.cancel_button')}</AlertDialogCancel>
                           <AlertDialogAction
                             onClick={() => {
                               handleRemoveBlock();
                               setIsRemoveBlockDialogOpen(false);
                             }}
                           >
-                            Remove
+                            {t('entry.remove_button')}
                           </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
-                    <TooltipContent>Remove block</TooltipContent>
+                    <TooltipContent>{t('entry.remove_block_button')}</TooltipContent>
                   </Tooltip>
                 )}
               </Badge>
@@ -888,6 +892,7 @@ const SingleField = ({
   index?: number;
   keyPrefix?: string;
 }) => {
+  const { t } = useTranslation();
   const {
     control,
     formState: { errors },
@@ -923,13 +928,13 @@ const SingleField = ({
             {field.required && (
               <Badge variant="secondary" className="text-muted-foreground">
                 <Asterisk className="-ml-1 -mr-0.5" />
-                Required
+                {t('entry.required_badge')}
               </Badge>
             )}
             {hasExplicitReadonly(field) && (
               <Badge variant="secondary" className="text-muted-foreground">
                 <Ban className="-ml-0.5" />
-                Readonly
+                {t('entry.readonly_badge')}
               </Badge>
             )}
           </div>
@@ -979,7 +984,7 @@ const SingleField = ({
                       className="text-muted-foreground"
                     >
                       <Asterisk className="-ml-1 -mr-0.5" />
-                      Required
+                      {t('entry.required_badge')}
                     </Badge>
                   )}
                   {hasExplicitReadonly(field) && (
@@ -988,7 +993,7 @@ const SingleField = ({
                       className="text-muted-foreground"
                     >
                       <Ban className="-ml-0.5" />
-                      Readonly
+                      {t('entry.readonly_badge')}
                     </Badge>
                   )}
                 </div>
@@ -1042,9 +1047,10 @@ const EntryForm = ({
   onDirtyChange?: (isDirty: boolean) => void;
   onChangeRegistered?: () => void;
 }) => {
+  const { t } = useTranslation();
   const zodSchema = useMemo(() => {
-    return generateZodSchema(fields);
-  }, [fields]);
+    return generateZodSchema(fields, false, t);
+  }, [fields, t]);
 
   const defaultValues = useMemo(() => {
     return initializeState(fields, sanitizeObject(contentObject));
@@ -1146,7 +1152,7 @@ const EntryForm = ({
   );
 
   const handleError = () => {
-    toast.error("Please fix the errors before saving.", { duration: 5000 });
+    toast.error(t('entry.fix_errors_before_saving'), { duration: 5000 });
   };
 
   const handleFormSubmit = useCallback(
@@ -1167,7 +1173,7 @@ const EntryForm = ({
       >
         {filePath && (
           <div className="space-y-2 overflow-hidden">
-            <FormLabel>Filename</FormLabel>
+            <FormLabel>{t('entry.filename_label')}</FormLabel>
             {filePath}
           </div>
         )}
