@@ -7,8 +7,10 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getVisits } from "@/lib/tracker";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslation } from 'react-i18next';
   
 export function RepoLatest() {
+  const { t } = useTranslation();
   const [recentVisits, setRecentVisits] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const displayedVisits = recentVisits.slice(0, 3);
@@ -62,12 +64,12 @@ export function RepoLatest() {
             className="truncate font-medium hover:underline"
             href={`/${visit.owner}/${visit.repo}/${encodeURIComponent(visit.branch)}`}
           >{visit.repo}</Link>
-          <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(visit.timestamp * 1000))} ago</div>
+          <div className="text-muted-foreground truncate">{formatDistanceToNow(new Date(visit.timestamp * 1000))} {t('repo.latest.ago')}</div>
           <Link
             className={cn("ml-auto", buttonVariants({ variant: "outline", size: "xs"}))}
             href={`/${visit.owner}/${visit.repo}/${encodeURIComponent(visit.branch)}`}
           >
-            Open
+            {t('repo.latest.open_link')}
           </Link>
         </li>
       ))}

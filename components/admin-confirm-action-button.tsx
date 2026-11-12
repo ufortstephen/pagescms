@@ -13,6 +13,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useTranslation } from 'react-i18next';
 
 export function AdminConfirmActionButton({
   action,
@@ -35,6 +36,7 @@ export function AdminConfirmActionButton({
   icon?: React.ReactNode;
   iconOnly?: boolean;
 }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   return (
@@ -51,7 +53,7 @@ export function AdminConfirmActionButton({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>{t('admin_confirm.cancel_button')}</AlertDialogCancel>
           <form
             className="contents"
             action={async () => {

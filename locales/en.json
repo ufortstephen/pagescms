@@ -1,0 +1,530 @@
+{
+  "auth": {
+    "collaborator": {
+      "invite_unavailable": "Invite unavailable",
+      "invalid_invite_link": "This invitation link is invalid."
+    }
+  },
+  "repo_actions": {
+    "access_denied_title": "Access denied",
+    "github_users_only_description": "Only GitHub users can view action history."
+  },
+  "cache": {
+    "git_users_only": "Only GitHub users can manage the cache.",
+    "disabled_title": "Cache disabled",
+    "enable_instructions": "Enable the cache in \".pages.yml\" by setting \"settings.cache: true\".",
+    "updating_cache": "Updating cache...",
+    "page_title": "Cache",
+    "docs_link": "Cache docs",
+    "clear_all_button_label": "Clear all cache",
+    "clear_all_button_title": "Clear all cache?",
+    "clear_all_description": "This will clear file, config, and permission cache for this repository/branch.",
+    "content_card_title": "Content",
+    "content_card_description": "Cached content (files and collections).",
+    "files_cached_label": "Files cached",
+    "folder_caches_label": "Folder caches",
+    "cache_sha": "Cache SHA",
+    "remote_sha": "Remote SHA",
+    "updated": "Updated",
+    "last_checked": "Last checked",
+    "config_title": "Config",
+    "config_description": "Cache of the configuration file ( <code/>).",
+    "permissions_title": "Permissions",
+    "permissions_description": "Cached repository permission checks.",
+    "entries": "Entries",
+    "unknown_status": "unknown",
+    "unknown_error": "Unknown cache error",
+    "unknown_error_instructions": "Try refreshing the cache first. If the issue persists, clear the cache and refresh it again.",
+    "refresh_button_label": "Refresh cache",
+    "refresh_confirm_title": "Refresh file cache?",
+    "refresh_confirm_description": "This will check remote SHA and reconcile file cache if needed.",
+    "clear_button_label": "Clear cache",
+    "clear_confirm_title": "Clear file cache?",
+    "clear_file_description": "This will delete cached file entries and reset file cache metadata.",
+    "refresh_config_title": "Refresh config cache?",
+    "refresh_config_description": "This will refetch and revalidate the cached configuration.",
+    "clear_config_title": "Clear config cache?",
+    "clear_config_description": "This will remove cached config for this repository/branch.",
+    "clear_permission_title": "Clear permission cache?",
+    "clear_permission_description": "This will remove cached permission entries for this repository."
+  },
+  "collaborators": {
+    "empty_description": "Only GitHub users can manage collaborators.",
+    "invite_button": "Invite",
+    "invite_dialog_title": "Invite collaborators",
+    "invite_dialog_description": "Enter one or multiple email addresses, separated by commas or new lines.",
+    "invite_textarea_placeholder": "alice@example.com, bob@example.com",
+    "send_invites_button_one": "Send invite",
+    "send_invites_button_other": "Send invites",
+    "heading": "Collaborators",
+    "docs_link": "Collaborators docs",
+    "empty_description_2": "We couldn't load the list of collaborators.",
+    "avatar_alt": "{{email}}'s avatar",
+    "actions_label": "Collaborator actions",
+    "resend_invitation_button": "Resend invitation",
+    "remove_button": "Remove",
+    "confirm_remove_title": "Are you sure?",
+    "confirm_remove_description": "This will remove access to \"{{owner}}/{{repo}}\" for \"{{email}}\".",
+    "confirm_remove_action": "Remove collaborator",
+    "empty_title": "No collaborators",
+    "empty_description_3": "Invite collaborators to give them access to this repository."
+  },
+  "collection": {
+    "new_entry_title": "New entry",
+    "sort_ascending_title": "Sort ascending",
+    "sort_descending_title": "Sort descending",
+    "clear_sort_title": "Clear sort",
+    "collapse_row": "Collapse row",
+    "expand_row": "Expand row",
+    "no_entries": "No entries",
+    "search_entries_placeholder": "Search entries...",
+    "create_folder_tooltip": "Create folder",
+    "add_entry_link": "Add an entry",
+    "load_items_error": "Could not load items inside {{fileName}}: {{message}}",
+    "edit_link": "Edit",
+    "add_children_entry_tooltip": "Add children entry",
+    "rename_first_dialog_title": "Rename this file first?",
+    "rename_first_dialog_description_prefix": "Before adding children to this file, you must rename it from \"",
+    "rename_first_dialog_description_suffix": "\" to \"",
+    "rename_dialog_action": "Rename",
+    "show_hidden_segments_label": "Show hidden segments",
+    "folder_not_found_title": "Folder not found",
+    "folder_does_not_exist_description": "The collection folder \"{{path}}\" does not exist yet.",
+    "go_to_settings_link": "Go to settings"
+  },
+  "configuration": {
+    "github_users_only_message": "Only GitHub users can manage repository configuration.",
+    "title": "Configuration",
+    "docs_label": "Configuration docs",
+    "view_docs_tooltip": "View docs"
+  },
+  "repo": {
+    "branch_not_found_title": "Branch not found",
+    "branch_not_found_description": "The branch \"{{decodedBranch}}\" could not be found. It may have been removed or renamed.",
+    "open_default_branch_link": "Open default branch",
+    "permission_denied_description": "You do not have permission to access this repository.",
+    "choose_another_repo_link": "Choose another repository",
+    "configuration_unavailable": "Configuration unavailable",
+    "configuration_disabled_description": "This repository is not configured, and configuration access is disabled here. Edit \".pages.yml\" on GitHub if you think this is a mistake.",
+    "edit_configuration_github_link": "Edit configuration on GitHub",
+    "repository_not_configured_title": "Repository not configured",
+    "missing_pages_yml_description": "This repository does not have a \".pages.yml\" file yet. Ask a GitHub admin to initialize the configuration first.",
+    "empty_title": "Empty repository",
+    "empty_description": "Create a branch and add a \".pages.yml\" file to configure this repository.",
+    "not_found_title": "Repository not found",
+    "not_found_description": "It may have been removed, renamed, or the URL may be incorrect.",
+    "unknown_time": "Unknown time",
+    "action_status_retry": "Couldn’t refresh action status. Retrying…",
+    "starting_action": "Starting \"{{label}}\"…",
+    "view_all_actions": "View all actions",
+    "trigger_github_action_description": "This will trigger a GitHub Action.",
+    "run_action_button": "Run action",
+    "no_branches": "No branches.",
+    "search_branches_placeholder": "Search branches by name",
+    "no_branches_found": "No branches found.",
+    "dropdown": {
+      "author_picture_alt": "Picture of the author",
+      "branches_label": "Branches",
+      "manage_branches_item": "Manage branches"
+    },
+    "latest": {
+      "ago": "ago",
+      "open_link": "Open"
+    },
+    "recently_visited": "Recently visited",
+    "owner_avatar": "{{owner}}'s avatar",
+    "all_projects": "All projects",
+    "template_preview_alt": "Preview for {{name}}",
+    "copy_template_button": "Copy template",
+    "copy_template_description": "This will create a copy of the template repository below under the selected account.",
+    "account_label": "Account",
+    "name_label": "Name",
+    "invalid_name_error": "Invalid name",
+    "create_copy_button": "Create copy"
+  },
+  "admin": {
+    "title": "Admin",
+    "go_home_link": "Go home",
+    "overview_card_title": "Overview",
+    "overview_card_description": "High-level installation metrics.",
+    "users_label": "Users",
+    "installs_label": "Installs",
+    "configured_repos_label": "Configured repos",
+    "cached_files_label": "Cached files",
+    "sessions_description": "Search and revoke active sessions for individual users or everyone at once.",
+    "logout_all_label": "Log out all users",
+    "logout_all_title": "Log out all users?",
+    "logout_all_description": "This will revoke every active session and redirect everyone to sign in again.",
+    "table_head_name": "Name",
+    "table_head_email": "Email",
+    "table_head_github": "GitHub",
+    "table_head_created": "Created",
+    "table_head_updated": "Updated",
+    "no_users_found": "No users found.",
+    "showing": "Showing",
+    "of": "of",
+    "users": "users",
+    "page_of_pages": "Page {{safeCurrentPage}} of {{totalUserPages}}",
+    "cache": "Cache",
+    "cache_description": "Global cache state across files, config, metadata, and permission checks.",
+    "cache_metadata_rows": "Cache metadata rows",
+    "permission_cache_rows": "Permission cache rows",
+    "collaborator_rows": "Collaborator rows",
+    "verified_users_label": "Verified users",
+    "github_identities_label": "GitHub identities",
+    "reset_cache_button": "Reset cache",
+    "reset_cache_confirm_title": "Reset cache?",
+    "reset_cache_description": "This will clear cached files, cached config, cache metadata, and permission cache.",
+    "aria_label_panel": "Admin panel",
+    "user_actions_aria_label": "User actions for {{name}}",
+    "user_actions": {
+      "logout_dropdown": "Log out",
+      "logout_confirm_title": "Log out user?",
+      "logout_confirm_description": "This will revoke all active sessions for {{name}}."
+    }
+  },
+  "loading": {
+    "page_indicator": "Loading"
+  },
+  "page": {
+    "projects_title": "Projects",
+    "recently_visited_heading": "Recently visited",
+    "open_project_heading": "Open a project",
+    "create_from_template_heading": "Create from a template",
+    "install_github_app_empty_title": "Install the GitHub App",
+    "install_github_app_empty_description": "Install the GitHub App on at least one account before you can open or create projects.",
+    "install_github_app_link": "<svg><title>GitHub</title> <path/></svg> Install GitHub App",
+    "no_repositories_yet_empty_title": "No repositories yet",
+    "no_repositories_yet_empty_description": "You need an invitation to a repository before you can collaborate. Ask a repository owner or organization admin to invite you."
+  },
+  "settings": {
+    "title": "Settings",
+    "authentication_card_title": "Authentication",
+    "authentication_card_description": "Your sign-in methods and linked identity providers.",
+    "installations_card_title": "Installations",
+    "installations_card_description": "Manage the accounts the Github application is installed on.",
+    "identities": {
+      "github_disconnected_message": "GitHub account disconnected.",
+      "email_label": "Email",
+      "connected_status": "Connected",
+      "connect_button": "Connect",
+      "github_actions_label": "GitHub actions",
+      "manage_on_github_link": "Manage on GitHub",
+      "disconnect_button": "Disconnect"
+    }
+  },
+  "error": {
+    "title": "Something went wrong",
+    "try_again_button": "Try again"
+  },
+  "layout": {
+    "page_title": "{{page}} | Pages CMS",
+    "cms_title": "Pages CMS",
+    "social_card_title": "Pages CMS social card"
+  },
+  "not_found": {
+    "page_title": "Page not found",
+    "page_description": "The page or resource you requested could not be found."
+  },
+  "about": {
+    "pages_cms": "About Pages CMS",
+    "pages_title": "Pages CMS",
+    "description": "Open source CMS for static sites. Edit directly on GitHub with a clean interface.",
+    "version_label": "Version",
+    "update_version": "Update to {{latestVersion}}",
+    "website_label": "Website",
+    "docs_label": "Docs",
+    "docs_link": "pagescms.org/docs",
+    "pagescms_link": "pagescms/pagescms"
+  },
+  "actions": {
+    "sidebar": "Sidebar",
+    "starting_action": "Starting \"{{actionLabel}}\"…",
+    "run_cancelled": "Run cancelled.",
+    "header": "Actions",
+    "view_docs": "View docs",
+    "search_placeholder": "Search",
+    "open_filters": "Open filters",
+    "filters": "Filters",
+    "status_placeholder": "Status",
+    "all_statuses": "All statuses",
+    "status": {
+      "succeeded": "Succeeded",
+      "failed": "Failed",
+      "pending": "Pending"
+    },
+    "filter": {
+      "action": "Action",
+      "all_actions": "All actions",
+      "triggered_by": "Triggered by",
+      "anyone": "Anyone"
+    },
+    "reset_filters": {
+      "button": "Reset filters"
+    },
+    "table": {
+      "context": "Context"
+    },
+    "triggered_column_header": "Triggered",
+    "triggered_by_column_header": "Triggered by",
+    "ref_column_header": "Ref",
+    "no_actions_message": "No actions yet.",
+    "no_matching_actions_message": "No matching actions.",
+    "run_actions_button": "Run actions",
+    "view_on_github_link": "View on GitHub",
+    "run_again_menu_item": "Run again",
+    "cancel_run_menu_item": "Cancel run"
+  },
+  "admin_confirm": {
+    "cancel_button": "Cancel"
+  },
+  "admin_user_search": {
+    "search_placeholder": "Search users"
+  },
+  "email": {
+    "collaborator_added": {
+      "added_to_repo_on_pages_cms": "You were added to \"{{repoName}}\" on Pages CMS",
+      "pages_cms_logo_alt": "Pages CMS",
+      "added_to_repo_heading": "You were added to \"{{repoName}}\"",
+      "invited_by_already_has_access": "<a>{{invitedByName}}</a> added you to the \"{{repoName}}\" project on Pages CMS. You already have access, so there is nothing to accept.",
+      "open_repo_button": "Open \"{{repoName}}\"",
+      "intended_for_email": "This email was intended for <a>{{email}}</a> ."
+    }
+  },
+  "invite": {
+    "invited_you_to_repo": "{{invitedByName}} invited you to \"{{repoName}}\"",
+    "join_repo_heading": "Join \"{{repoName}}\" on Pages CMS",
+    "invited_to_project_text": "<a>{{invitedByName}}</a> has invited you to the \"{{repoName}}\" project on Pages CMS. Use the following link to start collaborating:",
+    "join_repo_button": "Join \"{{repoName}}\"",
+    "copy_paste_url": "or copy and paste this URL into your browser:",
+    "intended_for_email": "This email was intended for <a>{{email}}</a> . If you think this is a mistake, you can safely ignore this email."
+  },
+  "login": {
+    "email_sign_in": "Sign in to Pages CMS",
+    "verification_code_prompt": "Enter this temporary verification code to continue:",
+    "code_expiry_notice": "This code will expire in 5 minutes.",
+    "email_for_sign_in": "This email was intended for <a>{{email}}</a> . If you didn't try to sign in, you can safely ignore this email."
+  },
+  "empty_create": {
+    "creating": "Creating {{toCreate}}...",
+    "opening": "Opening {{toCreate}}...",
+    "created_opening": "Created {{toCreate}}. Opening...",
+    "creating_short": "Creating..."
+  },
+  "entry": {
+    "remove_item_question": "Remove this item?",
+    "action_cannot_undone": "This action cannot be undone.",
+    "remove_button": "Remove",
+    "remove_item_tooltip": "Remove item",
+    "required_badge": "Required",
+    "readonly_badge": "Readonly",
+    "collapse_all_button": "Collapse all",
+    "expand_all_button": "Expand all",
+    "add_item_button": "Add an item",
+    "choose_content_block": "Choose content block:",
+    "remove_block_confirmation": "Remove this block?",
+    "remove_block_button": "Remove block",
+    "fix_errors_before_saving": "Please fix the errors before saving.",
+    "filename_label": "Filename",
+    "editing_title": "Editing \"{{titleValue}}\"",
+    "editing_file": "Editing \"{{fileName}}\"",
+    "save_aria_label": "Save",
+    "config_not_found_title": "Configuration not found",
+    "file_not_found_title": "File not found",
+    "config_file_missing_desc": "The configuration file \".pages.yml\" does not exist yet.",
+    "file_missing_desc": "The file \"{{value}}\" does not exist yet.",
+    "create_config_file": "Create configuration file",
+    "create_file": "Create file",
+    "config_link": "Go to configuration",
+    "disabled_title": "Creating entries is disabled",
+    "disabled_description": "New entries are not allowed for this collection.",
+    "back_to_collection": "Back to collection",
+    "filename_placeholder": "Filename",
+    "lock_filename_aria": "Lock filename",
+    "unlock_filename_aria": "Unlock filename",
+    "lock_tooltip": "Lock filename",
+    "unlock_edit_tooltip": "Unlock to edit"
+  },
+  "entry_history": {
+    "avatar_alt": "{{authorName}}'s avatar",
+    "time_ago": "{{distanceToNow}} ago",
+    "unknown_date": "Unknown date",
+    "see_all_changes": "See all changes"
+  },
+  "file": {
+    "rename_option": "Rename",
+    "delete_option": "Delete",
+    "delete_confirmation_title": "Are you sure you want to delete this file?",
+    "delete_confirmation_description": "This will premanently delete \"{{path}}\".",
+    "rename_dialog_title": "Rename file",
+    "rename_button": "Rename",
+    "view_on_github_aria_label": "View {{fileName}} on GitHub",
+    "remove_aria_label": "Remove {{fileName}}",
+    "remove_tooltip": "Remove",
+    "no_media_config_found": "No media configuration found. <a>Check your settings</a>."
+  },
+  "folder_create": {
+    "name_required_error": "Folder name is required.",
+    "title": "Create a folder",
+    "description": "Choose a name for the folder to create",
+    "under_value_description": "under \"{{value}}\"",
+    "create_button": "Create"
+  },
+  "github_auth": {
+    "session_expired_title": "GitHub session expired",
+    "session_expired_description": "Your GitHub session has expired. You'll need to sign in again.",
+    "sign_in_another_way_button": "Sign in another way"
+  },
+  "invite_sign_in": {
+    "send_code_error": "Unable to send sign-in code.",
+    "enter_code_prompt": "Enter the 6-digit code.",
+    "claim_invitation_error": "Unable to claim this invitation.",
+    "verify_code_error": "Unable to verify code.",
+    "invitation_unavailable_message": "This invitation is no longer available.",
+    "sign_in_link": "Sign in",
+    "wrong_account_title": "Wrong account",
+    "invitation_sent_to_other_account_message": "This invitation was sent to another account.",
+    "sign_out_button": "Sign out"
+  },
+  "media": {
+    "select_images_title": "Select images",
+    "select_button": "Select",
+    "upload": {
+      "invalid_file_type": "Invalid file type. Allowed: {{accept}}",
+      "files_skipped": "Some files were skipped. Allowed: {{accept}}",
+      "drop_files_here": "Drop files here to upload"
+    },
+    "upload_button": "Upload",
+    "not_configured_title": "Media not configured",
+    "not_configured_description": "No media folder is configured for this repository.",
+    "open_configuration_link": "Open configuration",
+    "folder_not_found_title": "Media folder not found",
+    "folder_not_found_description": "The media folder \"{{input}}\" does not exist yet.",
+    "path_not_found_description": "The folder \"{{path}}\" could not be found.",
+    "open_media_root_button": "Open media root",
+    "empty_folder_title": "Empty folder",
+    "empty_folder_description": "Drag and drop files here, or use Upload to add files to this folder."
+  },
+  "otp_verification": {
+    "verify_login_heading": "Verify your login",
+    "enter_code_description": "Enter the 6-digit code sent to {{emailLabel}}.",
+    "resend_code_button": "Resend code"
+  },
+  "path_breadcrumb": {
+    "toggle_menu": "Toggle menu"
+  },
+  "repo_select": {
+    "login_avatar_alt": "{{login}}'s avatar",
+    "manage_github_accounts_link": "Manage GitHub accounts",
+    "manage_login_installation_settings_aria_label": "Manage {{login}} installation settings on GitHub",
+    "manage_github_app_tooltip": "Manage GitHub App",
+    "search_repositories_input_placeholder": "Search repositories by name",
+    "no_projects_title": "No projects",
+    "no_projects_description": "No projects matched your search."
+  },
+  "installations": {
+    "no_account_github": "No account with the Github application installed.",
+    "installation_actions": "Installation actions"
+  },
+  "profile": {
+    "updated": "Profile updated.",
+    "title": "Profile",
+    "description": "Manage the information displayed to other users.",
+    "picture_label": "Picture",
+    "save_button": "Save profile"
+  },
+  "sign_in": {
+    "github_error": "Could not start GitHub sign-in. Please try again.",
+    "invalid_email": "Invalid email",
+    "code_sent": "We sent you a sign-in code.",
+    "terms_privacy": "By clicking continue, you agree to our <a>Terms of Service</a> and <a2>Privacy Policy</a2> .",
+    "github_button": "Sign in with GitHub",
+    "or": "Or",
+    "continue_with_email": "Continue with email"
+  },
+  "thumbnail": {
+    "alt_text": "thumbnail",
+    "loading_title": "Loading...",
+    "no_image_title": "No image"
+  },
+  "ui": {
+    "breadcrumb": "breadcrumb",
+    "more": "More"
+  },
+  "dialog": {
+    "close_label": "Close"
+  },
+  "editor": {
+    "block_options": {
+      "text": "Text",
+      "heading_level_1": "Heading 1",
+      "heading_level_2": "Heading 2",
+      "heading_level_3": "Heading 3",
+      "bulleted_list": "Bulleted list",
+      "numbered_list": "Numbered list",
+      "quote": "Quote",
+      "code_block": "Code block"
+    },
+    "block_style": "Block style",
+    "image_alt_button": "Image alt text",
+    "image_alt_text_button": "Image alt text",
+    "alt_button": "ALT",
+    "describe_image_placeholder": "Describe image",
+    "rows_label": "Rows:",
+    "columns_label": "Columns:",
+    "slash_command": {
+      "no_results": "No results"
+    }
+  },
+  "pagination": {
+    "aria_label": "pagination",
+    "previous_page_label": "Go to previous page",
+    "previous_button": "Previous",
+    "next_page_label": "Go to next page",
+    "next_button": "Next",
+    "ellipsis_label": "More pages"
+  },
+  "sidebar": {
+    "title": "Sidebar",
+    "description": "Displays the mobile sidebar.",
+    "toggle_button": "Toggle Sidebar"
+  },
+  "user": {
+    "theme_label": "Theme",
+    "theme_light": "Light",
+    "theme_dark": "Dark",
+    "theme_system": "System"
+  },
+  "action_toast": {
+    "stopped_tracking": "Stopped tracking \"{{actionLabel}}\" after 12 hours."
+  },
+  "core": {
+    "boolean": {
+      "true_badge": "True",
+      "false_badge": "False"
+    }
+  },
+  "image": {
+    "view_on_github": "View image on GitHub",
+    "remove_button": "Remove image"
+  },
+  "edit_component": {
+    "no_options_found": "No options found.",
+    "loading_options": "Loading options..."
+  },
+  "rich_text": {
+    "editor_button": "Editor",
+    "source_button": "Source"
+  },
+  "fields": {
+    "uuid": {
+      "generate_new": "Generate new UUID",
+      "invalid": "Invalid UUID format"
+    },
+    "required": "This field is required",
+    "number": {
+      "min": "Minimum value is {{min}}",
+      "max": "Maximum value is {{max}}"
+    }
+  }
+}

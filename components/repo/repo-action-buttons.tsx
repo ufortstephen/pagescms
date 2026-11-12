@@ -56,6 +56,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation, Trans } from 'react-i18next';
 
 type RepoActionButtonsProps = {
   actions: RepoActionConfig[];
@@ -89,7 +90,7 @@ const formatRunLine = (run: ActionRunSummary) => {
   if (!createdAt || Number.isNaN(createdAt.getTime())) {
     return (
       <span className="flex min-w-0 flex-col">
-        <span className="truncate">Unknown time</span>
+        <span className="truncate"><Trans i18nKey="repo.unknown_time" /></span>
         {secondary && (
           <span className="truncate text-xs text-muted-foreground">{secondary}</span>
         )}
@@ -138,6 +139,7 @@ export function RepoActionButtons({
   contextData = {},
   layout = "header",
 }: RepoActionButtonsProps) {
+  const { t } = useTranslation();
   const { user } = useUser();
   const { trackActionRun } = useActionToasts();
   const isGithubUser = hasGithubIdentity(user);
@@ -187,7 +189,7 @@ export function RepoActionButtons({
       } catch (error) {
         console.error(error);
         if (refreshErrorToastIdRef.current == null) {
-          refreshErrorToastIdRef.current = toast.error("Couldn’t refresh action status. Retrying…");
+          refreshErrorToastIdRef.current = toast.error(t('repo.action_status_retry'));
         }
       }
     }, 4000);
@@ -199,7 +201,7 @@ export function RepoActionButtons({
     action: RepoActionConfig,
     inputValues: Record<string, string | number | boolean> = {},
   ) => {
-    const toastId = toast.loading(`Starting "${action.label}"…`);
+    const toastId = toast.loading(t('repo.starting_action', { label: action.label }));
 
     setDispatching((current) => ({ ...current, [action.name]: true }));
 
@@ -379,7 +381,7 @@ export function RepoActionButtons({
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link href={`/${owner}/${repo}/${encodeURIComponent(refName)}/actions`}>
-                  View all actions
+                  {t('repo.view_all_actions')}
                 </Link>
               </DropdownMenuItem>
             </>
@@ -406,7 +408,7 @@ export function RepoActionButtons({
           <DialogDescription>
             {typeof dialogAction?.confirm === "object" && dialogAction.confirm.message
               ? dialogAction.confirm.message
-              : "This will trigger a GitHub Action."}
+              : t('repo.trigger_github_action_description')}
           </DialogDescription>
         </DialogHeader>
         {dialogAction?.fields?.length ? (
@@ -428,12 +430,12 @@ export function RepoActionButtons({
             setDialogAction(null);
             setDialogValues({});
           }}>
-            Cancel
+            {t('admin_confirm.cancel_button')}
           </Button>
           <Button onClick={handleDialogSubmit} disabled={isDialogSubmitDisabled}>
             {typeof dialogAction?.confirm === "object" && dialogAction.confirm.button
               ? dialogAction.confirm.button
-              : dialogAction?.label ?? "Run action"}
+              : dialogAction?.label ?? t('repo.run_action_button')}
           </Button>
         </DialogFooter>
       </DialogContent>

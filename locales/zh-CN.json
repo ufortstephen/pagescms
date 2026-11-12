@@ -1,0 +1,529 @@
+{
+  "auth": {
+    "collaborator": {
+      "invite_unavailable": "邀请不可用",
+      "invalid_invite_link": "此邀请链接无效。"
+    }
+  },
+  "repo_actions": {
+    "access_denied_title": "访问被拒绝",
+    "github_users_only_description": "只有 GitHub 用户才能查看操作历史记录。"
+  },
+  "cache": {
+    "git_users_only": "只有 GitHub 用户可以管理缓存。",
+    "disabled_title": "缓存已禁用",
+    "enable_instructions": "在 \".pages.yml\" 中设置 \"settings.cache: true\" 以启用缓存。",
+    "updating_cache": "正在更新缓存...",
+    "page_title": "缓存",
+    "docs_link": "缓存文档",
+    "clear_all_button_label": "清除所有缓存",
+    "clear_all_button_title": "清除所有缓存？",
+    "clear_all_description": "这将清除此存储库/分支的文件、配置和权限缓存。",
+    "content_card_title": "内容",
+    "content_card_description": "缓存的内容（文件和集合）。",
+    "files_cached_label": "已缓存文件",
+    "folder_caches_label": "文件夹缓存",
+    "cache_sha": "缓存 SHA",
+    "remote_sha": "远程 SHA",
+    "updated": "已更新",
+    "last_checked": "上次检查",
+    "config_title": "配置",
+    "config_description": "配置文件缓存 ( <code/>)。",
+    "permissions_title": "权限",
+    "permissions_description": "缓存的存储库权限检查。",
+    "entries": "条目",
+    "unknown_status": "未知",
+    "unknown_error": "未知缓存错误",
+    "unknown_error_instructions": "请先尝试刷新缓存。如果问题仍然存在，请清除缓存并再次刷新。",
+    "refresh_button_label": "刷新缓存",
+    "refresh_confirm_title": "刷新文件缓存？",
+    "refresh_confirm_description": "这将检查远程 SHA 并根据需要协调文件缓存。",
+    "clear_button_label": "清除缓存",
+    "clear_confirm_title": "清除文件缓存？",
+    "clear_file_description": "这将删除缓存的文件条目并重置文件缓存元数据。",
+    "refresh_config_title": "刷新配置缓存？",
+    "refresh_config_description": "这将重新获取并重新验证缓存的配置。",
+    "clear_config_title": "清除配置缓存？",
+    "clear_config_description": "这将删除此存储库/分支的缓存配置。",
+    "clear_permission_title": "清除权限缓存？",
+    "clear_permission_description": "这将删除此存储库的缓存权限条目。"
+  },
+  "collaborators": {
+    "empty_description": "仅 GitHub 用户可以管理协作者。",
+    "invite_button": "邀请",
+    "invite_dialog_title": "邀请协作者",
+    "invite_dialog_description": "输入一个或多个电子邮件地址，用逗号或换行符分隔。",
+    "invite_textarea_placeholder": "alice@example.com, bob@example.com",
+    "send_invites_button_other": "发送邀请",
+    "heading": "协作者",
+    "docs_link": "协作者文档",
+    "empty_description_2": "我们无法加载协作者列表。",
+    "avatar_alt": "{{email}} 的头像",
+    "actions_label": "协作者操作",
+    "resend_invitation_button": "重新发送邀请",
+    "remove_button": "移除",
+    "confirm_remove_title": "您确定要执行此操作吗？",
+    "confirm_remove_description": "这将移除对“{{owner}}/{{repo}}”中“{{email}}”的访问权限。",
+    "confirm_remove_action": "移除协作者",
+    "empty_title": "暂无协作者",
+    "empty_description_3": "邀请协作者以授予他们对该存储库的访问权限。"
+  },
+  "collection": {
+    "new_entry_title": "新条目",
+    "sort_ascending_title": "升序排序",
+    "sort_descending_title": "降序排序",
+    "clear_sort_title": "清除排序",
+    "collapse_row": "折叠行",
+    "expand_row": "展开行",
+    "no_entries": "没有条目",
+    "search_entries_placeholder": "搜索条目...",
+    "create_folder_tooltip": "创建文件夹",
+    "add_entry_link": "添加条目",
+    "load_items_error": "无法加载 {{fileName}} 中的项目：{{message}}",
+    "edit_link": "编辑",
+    "add_children_entry_tooltip": "添加子条目",
+    "rename_first_dialog_title": "先重命名此文件？",
+    "rename_first_dialog_description_prefix": "在向此文件添加子项之前，您必须将其从“",
+    "rename_first_dialog_description_suffix": "”重命名为“",
+    "rename_dialog_action": "重命名",
+    "show_hidden_segments_label": "显示隐藏的段落",
+    "folder_not_found_title": "未找到文件夹",
+    "folder_does_not_exist_description": "集合文件夹“{{path}}”尚不存在。",
+    "go_to_settings_link": "转到设置"
+  },
+  "configuration": {
+    "github_users_only_message": "只有 GitHub 用户才能管理存储库配置。",
+    "title": "配置",
+    "docs_label": "配置文档",
+    "view_docs_tooltip": "查看文档"
+  },
+  "repo": {
+    "branch_not_found_title": "分支未找到",
+    "branch_not_found_description": "找不到分支“{{decodedBranch}}”。它可能已被删除或重命名。",
+    "open_default_branch_link": "打开默认分支",
+    "permission_denied_description": "您无权访问此存储库。",
+    "choose_another_repo_link": "选择另一个存储库",
+    "configuration_unavailable": "配置不可用",
+    "configuration_disabled_description": "此存储库未配置，并且在此处禁用了配置访问。如果您认为这是一个错误，请在 GitHub 上编辑 \".pages.yml\"。",
+    "edit_configuration_github_link": "在 GitHub 上编辑配置",
+    "repository_not_configured_title": "存储库未配置",
+    "missing_pages_yml_description": "此存储库尚没有 \".pages.yml\" 文件。请先请 GitHub 管理员初始化配置。",
+    "empty_title": "空仓库",
+    "empty_description": "创建一个分支并添加一个“.pages.yml”文件来配置此仓库。",
+    "not_found_title": "未找到仓库",
+    "not_found_description": "它可能已被删除、重命名或 URL 不正确。",
+    "unknown_time": "未知时间",
+    "action_status_retry": "无法刷新操作状态。正在重试…",
+    "starting_action": "正在启动“{{label}}”…",
+    "view_all_actions": "查看所有操作",
+    "trigger_github_action_description": "这将触发一个 GitHub Action。",
+    "run_action_button": "运行操作",
+    "no_branches": "没有分支。",
+    "search_branches_placeholder": "按名称搜索分支",
+    "no_branches_found": "未找到分支。",
+    "dropdown": {
+      "author_picture_alt": "作者图片",
+      "branches_label": "分支",
+      "manage_branches_item": "管理分支"
+    },
+    "latest": {
+      "ago": "前",
+      "open_link": "打开"
+    },
+    "recently_visited": "最近访问",
+    "owner_avatar": "{{owner}} 的头像",
+    "all_projects": "所有项目",
+    "template_preview_alt": "预览 {{name}}",
+    "copy_template_button": "复制模板",
+    "copy_template_description": "这将将在所选账户下创建下方模板存储库的副本。",
+    "account_label": "账户",
+    "name_label": "名称",
+    "invalid_name_error": "无效名称",
+    "create_copy_button": "创建副本"
+  },
+  "admin": {
+    "title": "管理员",
+    "go_home_link": "返回主页",
+    "overview_card_title": "概览",
+    "overview_card_description": "高级安装指标。",
+    "users_label": "用户",
+    "installs_label": "安装数",
+    "configured_repos_label": "已配置的仓库",
+    "cached_files_label": "缓存文件",
+    "sessions_description": "搜索并一次性撤销单个用户或所有用户的活动会话。",
+    "logout_all_label": "登出所有用户",
+    "logout_all_title": "登出所有用户？",
+    "logout_all_description": "这将撤销所有活动会话，并重定向所有人重新登录。",
+    "table_head_name": "姓名",
+    "table_head_email": "邮箱",
+    "table_head_github": "GitHub",
+    "table_head_created": "创建时间",
+    "table_head_updated": "更新时间",
+    "no_users_found": "未找到用户。",
+    "showing": "显示",
+    "of": "的",
+    "users": "用户",
+    "page_of_pages": "第 {{safeCurrentPage}} 页，共 {{totalUserPages}} 页",
+    "cache": "缓存",
+    "cache_description": "跨文件、配置、元数据和权限检查的全局缓存状态。",
+    "cache_metadata_rows": "缓存元数据行",
+    "permission_cache_rows": "权限缓存行",
+    "collaborator_rows": "协作者行",
+    "verified_users_label": "已验证用户",
+    "github_identities_label": "GitHub 身份",
+    "reset_cache_button": "重置缓存",
+    "reset_cache_confirm_title": "重置缓存？",
+    "reset_cache_description": "这将清除缓存文件、缓存配置、缓存元数据和权限缓存。",
+    "aria_label_panel": "管理面板",
+    "user_actions_aria_label": "用户 {{name}} 的操作",
+    "user_actions": {
+      "logout_dropdown": "注销",
+      "logout_confirm_title": "确定注销用户？",
+      "logout_confirm_description": "这将注销用户 {{name}} 的所有活动会话。"
+    }
+  },
+  "loading": {
+    "page_indicator": "加载中"
+  },
+  "page": {
+    "projects_title": "项目",
+    "recently_visited_heading": "最近访问过",
+    "open_project_heading": "打开项目",
+    "create_from_template_heading": "从模板创建",
+    "install_github_app_empty_title": "安装 GitHub 应用",
+    "install_github_app_empty_description": "在至少一个账户上安装 GitHub 应用，然后才能打开或创建项目。",
+    "install_github_app_link": "<svg><title>GitHub</title> <path/></svg> 安装 GitHub 应用",
+    "no_repositories_yet_empty_title": "尚无存储库",
+    "no_repositories_yet_empty_description": "在协作之前，您需要获得存储库的邀请。请存储库所有者或组织管理员邀请您。"
+  },
+  "settings": {
+    "title": "设置",
+    "authentication_card_title": "身份验证",
+    "authentication_card_description": "您的登录方法和关联的身份提供商。",
+    "installations_card_title": "安装",
+    "installations_card_description": "管理 Github 应用程序安装在其上的帐户。",
+    "identities": {
+      "github_disconnected_message": "GitHub 帐户已断开连接。",
+      "email_label": "电子邮件",
+      "connected_status": "已连接",
+      "connect_button": "连接",
+      "github_actions_label": "GitHub 操作",
+      "manage_on_github_link": "在 GitHub 上管理",
+      "disconnect_button": "断开连接"
+    }
+  },
+  "error": {
+    "title": "发生错误",
+    "try_again_button": "重试"
+  },
+  "layout": {
+    "page_title": "{{page}} | 页面内容管理系统",
+    "cms_title": "页面内容管理系统",
+    "social_card_title": "页面内容管理系统 社交卡"
+  },
+  "not_found": {
+    "page_title": "未找到页面",
+    "page_description": "您请求的页面或资源未找到。"
+  },
+  "about": {
+    "pages_cms": "关于页面CMS",
+    "pages_title": "页面CMS",
+    "description": "用于静态站点的开源CMS。在GitHub上直接编辑，界面简洁。",
+    "version_label": "版本",
+    "update_version": "更新到 {{latestVersion}}",
+    "website_label": "网站",
+    "docs_label": "文档",
+    "docs_link": "pagescms.org/docs",
+    "pagescms_link": "pagescms/pagescms"
+  },
+  "actions": {
+    "sidebar": "侧边栏",
+    "starting_action": "正在开始“{{actionLabel}}”……",
+    "run_cancelled": "运行已取消。",
+    "header": "操作",
+    "view_docs": "查看文档",
+    "search_placeholder": "搜索",
+    "open_filters": "打开筛选器",
+    "filters": "筛选",
+    "status_placeholder": "状态",
+    "all_statuses": "所有状态",
+    "status": {
+      "succeeded": "成功",
+      "failed": "失败",
+      "pending": "待处理"
+    },
+    "filter": {
+      "action": "操作",
+      "all_actions": "所有操作",
+      "triggered_by": "由…触发",
+      "anyone": "任何人"
+    },
+    "reset_filters": {
+      "button": "重置筛选"
+    },
+    "table": {
+      "context": "上下文"
+    },
+    "triggered_column_header": "已触发",
+    "triggered_by_column_header": "触发者",
+    "ref_column_header": "引用",
+    "no_actions_message": "暂无操作。",
+    "no_matching_actions_message": "无匹配的操作。",
+    "run_actions_button": "运行操作",
+    "view_on_github_link": "在 GitHub 上查看",
+    "run_again_menu_item": "重新运行",
+    "cancel_run_menu_item": "取消运行"
+  },
+  "admin_confirm": {
+    "cancel_button": "取消"
+  },
+  "admin_user_search": {
+    "search_placeholder": "搜索用户"
+  },
+  "email": {
+    "collaborator_added": {
+      "added_to_repo_on_pages_cms": "您已被添加到 Pages CMS 中的 \"{{repoName}}\"",
+      "pages_cms_logo_alt": "Pages CMS",
+      "added_to_repo_heading": "您已被添加到 \"{{repoName}}\"",
+      "invited_by_already_has_access": "<a>{{invitedByName}}</a> 已将您添加到 Pages CMS 上的 \"{{repoName}}\" 项目。您已拥有访问权限，无需接受。",
+      "open_repo_button": "打开 \"{{repoName}}\"",
+      "intended_for_email": "此电子邮件原定发送至 <a>{{email}}</a>。"
+    }
+  },
+  "invite": {
+    "invited_you_to_repo": "{{invitedByName}} 邀请您加入“{{repoName}}”",
+    "join_repo_heading": "加入 Pages CMS 上的“{{repoName}}”",
+    "invited_to_project_text": "<a>{{invitedByName}}</a> 已邀请您加入 Pages CMS 上的“{{repoName}}”项目。请使用以下链接开始协作：",
+    "join_repo_button": "加入“{{repoName}}”",
+    "copy_paste_url": "或将此 URL 复制并粘贴到您的浏览器中：",
+    "intended_for_email": "此电子邮件是发送给 <a>{{email}}</a> 的。如果您认为这是错误的，您可以安全地忽略此电子邮件。"
+  },
+  "login": {
+    "email_sign_in": "登录 Pages CMS",
+    "verification_code_prompt": "输入此临时验证码以继续：",
+    "code_expiry_notice": "此代码将在5分钟后过期。",
+    "email_for_sign_in": "此电子邮件是发给 <a>{{email}}</a> 的。如果你没有尝试登录，可以安全忽略此邮件。"
+  },
+  "empty_create": {
+    "creating": "正在创建 {{toCreate}}...",
+    "opening": "正在打开 {{toCreate}}...",
+    "created_opening": "已创建 {{toCreate}}。正在打开...",
+    "creating_short": "正在创建..."
+  },
+  "entry": {
+    "remove_item_question": "要删除此项目吗？",
+    "action_cannot_undone": "此操作无法撤销。",
+    "remove_button": "删除",
+    "remove_item_tooltip": "删除项目",
+    "required_badge": "必填",
+    "readonly_badge": "只读",
+    "collapse_all_button": "全部折叠",
+    "expand_all_button": "全部展开",
+    "add_item_button": "添加项目",
+    "choose_content_block": "选择内容块：",
+    "remove_block_confirmation": "是否删除此块？",
+    "remove_block_button": "删除块",
+    "fix_errors_before_saving": "请在保存前修正错误。",
+    "filename_label": "文件名",
+    "editing_title": "编辑 \"{{titleValue}}\"",
+    "editing_file": "编辑 \"{{fileName}}\"",
+    "save_aria_label": "保存",
+    "config_not_found_title": "未找到配置",
+    "file_not_found_title": "未找到文件",
+    "config_file_missing_desc": "配置文件「.pages.yml」尚不存在。",
+    "file_missing_desc": "文件「{{value}}」尚不存在。",
+    "create_config_file": "创建配置文件",
+    "create_file": "创建文件",
+    "config_link": "前往配置",
+    "disabled_title": "创建条目已禁用",
+    "disabled_description": "此收藏夹不允许新建条目。",
+    "back_to_collection": "返回收藏夹",
+    "filename_placeholder": "文件名",
+    "lock_filename_aria": "锁定文件名",
+    "unlock_filename_aria": "解锁文件名",
+    "lock_tooltip": "文件名已锁定",
+    "unlock_edit_tooltip": "解锁以编辑"
+  },
+  "entry_history": {
+    "avatar_alt": "{{authorName}} 的头像",
+    "time_ago": "{{distanceToNow}} 前",
+    "unknown_date": "未知日期",
+    "see_all_changes": "查看所有更改"
+  },
+  "file": {
+    "rename_option": "重命名",
+    "delete_option": "删除",
+    "delete_confirmation_title": "你确定要删除此文件吗？",
+    "delete_confirmation_description": "这将永久删除「{{path}}」。",
+    "rename_dialog_title": "重命名文件",
+    "rename_button": "重命名",
+    "view_on_github_aria_label": "在 GitHub 上查看 {{fileName}}",
+    "remove_aria_label": "删除 {{fileName}}",
+    "remove_tooltip": "删除",
+    "no_media_config_found": "未找到媒体配置。<a>请检查您的设置</a>。"
+  },
+  "folder_create": {
+    "name_required_error": "文件夹名称是必需的。",
+    "title": "创建文件夹",
+    "description": "为要创建的文件夹选择一个名称",
+    "under_value_description": "在“{{value}}”下",
+    "create_button": "创建"
+  },
+  "github_auth": {
+    "session_expired_title": "GitHub 会话已过期",
+    "session_expired_description": "您的 GitHub 会话已过期。您需要重新登录。",
+    "sign_in_another_way_button": "通过其他方式登录"
+  },
+  "invite_sign_in": {
+    "send_code_error": "无法发送登录代码。",
+    "enter_code_prompt": "请输入6位数字代码。",
+    "claim_invitation_error": "无法领取此邀请。",
+    "verify_code_error": "无法验证代码。",
+    "invitation_unavailable_message": "此邀请已失效。",
+    "sign_in_link": "登录",
+    "wrong_account_title": "错误的账户",
+    "invitation_sent_to_other_account_message": "此邀请已发送至其他账户。",
+    "sign_out_button": "退出登录"
+  },
+  "media": {
+    "select_images_title": "选择图片",
+    "select_button": "选择",
+    "upload": {
+      "invalid_file_type": "无效的文件类型。允许的格式：{{accept}}",
+      "files_skipped": "部分文件已被跳过。允许的格式：{{accept}}",
+      "drop_files_here": "将文件拖放到此处以上传"
+    },
+    "upload_button": "上传",
+    "not_configured_title": "媒体未配置",
+    "not_configured_description": "此存储库未配置媒体文件夹。",
+    "open_configuration_link": "打开配置",
+    "folder_not_found_title": "未找到媒体文件夹",
+    "folder_not_found_description": "媒体文件夹“{{input}}”尚不存在。",
+    "path_not_found_description": "找不到文件夹“{{path}}”。",
+    "open_media_root_button": "打开媒体根目录",
+    "empty_folder_title": "空文件夹",
+    "empty_folder_description": "将文件拖放到此处，或使用“上传”将文件添加到此文件夹。"
+  },
+  "otp_verification": {
+    "verify_login_heading": "验证您的登录信息",
+    "enter_code_description": "输入发送到 {{emailLabel}} 的 6 位数字代码。",
+    "resend_code_button": "重新发送验证码"
+  },
+  "path_breadcrumb": {
+    "toggle_menu": "切换菜单"
+  },
+  "repo_select": {
+    "login_avatar_alt": "{{login}}的头像",
+    "manage_github_accounts_link": "管理 GitHub 账户",
+    "manage_login_installation_settings_aria_label": "管理 {{login}} 在 GitHub 上的安装设置",
+    "manage_github_app_tooltip": "管理 GitHub 应用",
+    "search_repositories_input_placeholder": "按名称搜索仓库",
+    "no_projects_title": "没有项目",
+    "no_projects_description": "没有项目与您的搜索匹配。"
+  },
+  "installations": {
+    "no_account_github": "未安装 Github 应用的账户。",
+    "installation_actions": "安装操作"
+  },
+  "profile": {
+    "updated": "个人资料已更新。",
+    "title": "个人资料",
+    "description": "管理显示给其他用户的信息。",
+    "picture_label": "图片",
+    "save_button": "保存个人资料"
+  },
+  "sign_in": {
+    "github_error": "无法开始 GitHub 登录。请重试。",
+    "invalid_email": "无效的电子邮件",
+    "code_sent": "我们已向您发送登录代码。",
+    "terms_privacy": "点击继续，即表示您同意我们的<a>服务条款</a>和<a2>隐私政策</a2>。",
+    "github_button": "使用 GitHub 登录",
+    "or": "或者",
+    "continue_with_email": "继续使用电子邮件"
+  },
+  "thumbnail": {
+    "alt_text": "缩略图",
+    "loading_title": "正在加载中...",
+    "no_image_title": "无图片"
+  },
+  "ui": {
+    "breadcrumb": "面包屑",
+    "more": "更多"
+  },
+  "dialog": {
+    "close_label": "关闭"
+  },
+  "editor": {
+    "block_options": {
+      "text": "文本",
+      "heading_level_1": "标题 1",
+      "heading_level_2": "标题 2",
+      "heading_level_3": "标题 3",
+      "bulleted_list": "项目列表",
+      "numbered_list": "编号列表",
+      "quote": "引用",
+      "code_block": "代码块"
+    },
+    "block_style": "块样式",
+    "image_alt_button": "图片替代文本",
+    "image_alt_text_button": "图片alt文本",
+    "alt_button": "替代文本",
+    "describe_image_placeholder": "描述图片",
+    "rows_label": "行数：",
+    "columns_label": "列数：",
+    "slash_command": {
+      "no_results": "无结果"
+    }
+  },
+  "pagination": {
+    "aria_label": "分页",
+    "previous_page_label": "前往上一页",
+    "previous_button": "上一页",
+    "next_page_label": "前往下一页",
+    "next_button": "下一页",
+    "ellipsis_label": "更多页"
+  },
+  "sidebar": {
+    "title": "侧边栏",
+    "description": "显示移动侧边栏。",
+    "toggle_button": "切换侧边栏"
+  },
+  "user": {
+    "theme_label": "主题",
+    "theme_light": "明亮",
+    "theme_dark": "暗黑",
+    "theme_system": "系统"
+  },
+  "action_toast": {
+    "stopped_tracking": "已停止跟踪「{{actionLabel}}」超过12小时"
+  },
+  "core": {
+    "boolean": {
+      "true_badge": "真",
+      "false_badge": "假"
+    }
+  },
+  "image": {
+    "view_on_github": "在 GitHub 上查看图片",
+    "remove_button": "删除图片"
+  },
+  "edit_component": {
+    "no_options_found": "未找到选项。",
+    "loading_options": "正在加载选项..."
+  },
+  "rich_text": {
+    "editor_button": "编辑器",
+    "source_button": "源代码"
+  },
+  "fields": {
+    "uuid": {
+      "generate_new": "生成新 UUID",
+      "invalid": "无效的UUID格式"
+    },
+    "required": "此字段为必填项",
+    "number": {
+      "min": "最小值是{{min}}",
+      "max": "最大值是{{max}}"
+    }
+  }
+}

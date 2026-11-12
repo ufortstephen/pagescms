@@ -10,8 +10,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useTranslation } from 'react-i18next';
 
 const EditComponent = forwardRef((props: any, ref: React.Ref<HTMLInputElement>) => {
+  const { t } = useTranslation();
   const { field, onChange, ...restProps } = props;
   const isInputReadonly = field?.readonly || !field?.options?.editable;
 
@@ -43,7 +45,7 @@ const EditComponent = forwardRef((props: any, ref: React.Ref<HTMLInputElement>) 
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Generate new UUID</p>
+              <p>{t('fields.uuid.generate_new')}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

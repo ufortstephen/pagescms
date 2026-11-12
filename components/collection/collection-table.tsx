@@ -34,6 +34,7 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ArrowUp, ArrowDown, Loader, CircleMinus, CirclePlus, Folder, FolderOpen } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 declare module '@tanstack/react-table' {
   interface ColumnMeta<TData extends RowData, TValue> {
@@ -87,6 +88,7 @@ export function CollectionTable<TData extends TableData>({
   isTree?: boolean,
   primaryField?: string
 }) {
+  const { t } = useTranslation();
   const [expanded, setExpanded] = useState<ExpandedState>({});
   
   const [loadingRows, setLoadingRows] = useState<Record<string, boolean>>({});
@@ -202,10 +204,10 @@ export function CollectionTable<TData extends TableData>({
                     title={
                       header.column.getCanSort()
                         ? header.column.getNextSortingOrder() === 'asc'
-                          ? 'Sort ascending'
+                          ? t('collection.sort_ascending_title')
                           : header.column.getNextSortingOrder() === 'desc'
-                            ? 'Sort descending'
-                            : 'Clear sort'
+                            ? t('collection.sort_descending_title')
+                            : t('collection.clear_sort_title')
                         : undefined
                     }
                   >
@@ -303,7 +305,7 @@ export function CollectionTable<TData extends TableData>({
                                   disabled={row.getIsExpanded() && Array.isArray(row.original.subRows) && row.original.subRows.length === 0}
                                 >
                                   {row.getIsExpanded() ? <CircleMinus className="text-muted-foreground hover:text-foreground h-4 w-4" /> : <CirclePlus className="text-muted-foreground hover:text-foreground h-4 w-4" />}
-                                  <span className="sr-only">{row.getIsExpanded() ? 'Collapse row' : 'Expand row'}</span>
+                                  <span className="sr-only">{row.getIsExpanded() ? t('collection.collapse_row') : t('collection.expand_row')}</span>
                                 </Button>
                           )}
                           
@@ -316,7 +318,7 @@ export function CollectionTable<TData extends TableData>({
           ) : (
             <TableRow className="hover:bg-transparent">
               <TableCell colSpan={columns.length} className="text-center text-muted-foreground text-sm p-6">
-                <span>No entries</span>
+                <span>{t('collection.no_entries')}</span>
               </TableCell>
             </TableRow>
           )}

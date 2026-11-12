@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import type { Editor } from "@tiptap/core";
 import type { LucideIcon } from "lucide-react";
 import { Ban } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export type SlashItem = {
   title: string;
@@ -19,6 +20,7 @@ export type CommandsListHandle = {
 };
 
 const CommandsList = forwardRef<CommandsListHandle, CommandsListProps>(({ items, command }, ref) => {
+  const { t } = useTranslation();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const CommandsList = forwardRef<CommandsListHandle, CommandsListProps>(({ items,
       ) : (
         <div className="text-muted-foreground flex items-center px-2 py-1.5 text-sm">
           <Ban className="mr-2 size-4" />
-          No results
+          {t('editor.slash_command.no_results')}
         </div>
       )}
     </div>

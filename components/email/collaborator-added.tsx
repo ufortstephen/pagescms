@@ -14,6 +14,7 @@ import {
   Tailwind,
 } from "@react-email/components";
 import { emailTheme } from "@/components/email/theme";
+import { useTranslation, Trans } from 'react-i18next';
 
 export const CollaboratorAddedEmailTemplate = ({
   email,
@@ -28,6 +29,7 @@ export const CollaboratorAddedEmailTemplate = ({
   invitedByName: string;
   invitedByUrl: string;
 }) => {
+  const { t } = useTranslation();
   const baseUrl = process.env.BASE_URL
     ? process.env.BASE_URL
     : process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -38,7 +40,7 @@ export const CollaboratorAddedEmailTemplate = ({
     <Html>
       <Head />
       <Preview>
-        You were added to &quot;{repoName}&quot; on Pages CMS
+        {t('email.collaborator_added.added_to_repo_on_pages_cms', { repoName })}
       </Preview>
       <Tailwind>
         <Body
@@ -54,7 +56,7 @@ export const CollaboratorAddedEmailTemplate = ({
                 src={`${baseUrl}/images/email-logo.png`}
                 width="42"
                 height="42"
-                alt="Pages CMS"
+                alt={t('email.collaborator_added.pages_cms_logo_alt')}
                 className="my-0 mx-auto"
               />
             </Section>
@@ -62,21 +64,16 @@ export const CollaboratorAddedEmailTemplate = ({
               className="text-[24px] font-semibold p-0 my-[30px] mx-0 text-center tracking-tight"
               style={{ color: emailTheme.foreground }}
             >
-              You were added to &quot;{repoName}&quot;
+              {t('email.collaborator_added.added_to_repo_heading', { repoName })}
             </Heading>
             <Text
               className="text-[16px] leading-[24px]"
               style={{ color: emailTheme.foreground }}
             >
-              <Link
+              <Trans i18nKey="email.collaborator_added.invited_by_already_has_access" components={{ a: <Link
                 href={invitedByUrl}
                 className="underline rounded-md"
-                style={{ color: emailTheme.link }}
-              >
-                {invitedByName}
-              </Link>{" "}
-              added you to the &quot;{repoName}&quot; project on Pages CMS.
-              You already have access, so there is nothing to accept.
+                style={{ color: emailTheme.link }} /> }} values={{ invitedByName, repoName }} />
             </Text>
             <Section className="text-center mt-[24px] mb-[24px]">
               <Button
@@ -88,22 +85,17 @@ export const CollaboratorAddedEmailTemplate = ({
                   color: emailTheme.buttonForeground,
                 }}
               >
-                Open &quot;{repoName}&quot;
+                {t('email.collaborator_added.open_repo_button', { repoName })}
               </Button>
             </Section>
             <Text
               className="text-[14px] leading-[24px] mt-[36px]"
               style={{ color: emailTheme.mutedForeground }}
             >
-              This email was intended for{" "}
-              <Link
+              <Trans i18nKey="email.collaborator_added.intended_for_email" components={{ a: <Link
                 href={`mailto:${email}`}
                 className="underline"
-                style={{ color: emailTheme.mutedLink }}
-              >
-                {email}
-              </Link>
-              .
+                style={{ color: emailTheme.mutedLink }} /> }} values={{ email }} />
             </Text>
           </Container>
         </Body>

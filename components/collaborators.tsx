@@ -55,6 +55,7 @@ import {
 import { requireApiSuccess } from "@/lib/api-client";
 import { toast } from "sonner";
 import { BookText, EllipsisVertical, Loader } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 type Collaborator = {
   id: number;
@@ -95,6 +96,7 @@ function InviteCollaboratorsDialog({
   triggerVariant?: "default" | "outline";
   triggerSize?: "default" | "sm";
 }) {
+  const { t } = useTranslation();
   const parsedInviteEmails = useMemo(() => {
     return Array.from(
       new Set(
@@ -110,15 +112,14 @@ function InviteCollaboratorsDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <Button variant={triggerVariant} size={triggerSize} disabled={disabled}>
-          {triggerLabel || "Invite"}
+          {triggerLabel || t('collaborators.invite_button')}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Invite collaborators</DialogTitle>
+          <DialogTitle>{t('collaborators.invite_dialog_title')}</DialogTitle>
           <DialogDescription>
-            Enter one or multiple email addresses, separated by commas or new
-            lines.
+            {t('collaborators.invite_dialog_description')}
           </DialogDescription>
         </DialogHeader>
         <form action={action} className="space-y-4">
@@ -126,7 +127,7 @@ function InviteCollaboratorsDialog({
           <input type="hidden" name="repo" value={repo} />
           <Textarea
             name="emails"
-            placeholder="alice@example.com, bob@example.com"
+            placeholder={t('collaborators.invite_textarea_placeholder')}
             value={value}
             onChange={(event) => onValueChange(event.target.value)}
             required
@@ -142,7 +143,7 @@ function InviteCollaboratorsDialog({
               type="submit"
               disabled={parsedInviteEmails.length === 0}
             >
-              Send invite{parsedInviteEmails.length > 1 ? "s" : ""}
+              {t('collaborators.send_invites_button', { count: parsedInviteEmails.length })}
             </SubmitButton>
           </DialogFooter>
         </form>
@@ -160,6 +161,7 @@ export function Collaborators({
   repo: string;
   branch?: string;
 }) {
+  const { t } = useTranslation();
   const [collaborators, setCollaborators] = useState<Collaborator[]>([]);
   const [addCollaboratorState, addCollaboratorAction] = useActionState<
     AddCollaboratorState,
@@ -298,7 +300,7 @@ export function Collaborators({
     return (
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h1 className="font-semibold text-lg">Collaborators</h1>
+          <h1 className="font-semibold text-lg">{t('collaborators.heading')}</h1>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -313,11 +315,11 @@ export function Collaborators({
                   rel="noreferrer"
                 >
                   <BookText />
-                  <span className="sr-only">Collaborators docs</span>
+                  <span className="sr-only">{t('collaborators.docs_link')}</span>
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>View docs</TooltipContent>
+            <TooltipContent>{t('configuration.view_docs_tooltip')}</TooltipContent>
           </Tooltip>
         </div>
         {showInviteAction ? (
@@ -381,9 +383,9 @@ export function Collaborators({
       <div className="absolute inset-0 p-4 md:p-6 flex items-center justify-center">
         <Empty className="max-w-[420px] flex-none">
           <EmptyHeader>
-            <EmptyTitle>Something went wrong</EmptyTitle>
+            <EmptyTitle>{t('error.title')}</EmptyTitle>
             <EmptyDescription>
-              We couldn&apos;t load the list of collaborators.
+              {t('collaborators.empty_description_2')}
             </EmptyDescription>
           </EmptyHeader>
         </Empty>
@@ -413,7 +415,7 @@ export function Collaborators({
                 <Avatar className="h-6 w-6">
                   <AvatarImage
                     src={`https://unavatar.io/${collaborator.email}?fallback=false`}
-                    alt={`${collaborator.email}'s avatar`}
+                    alt={t('collaborators.avatar_alt', { email: collaborator.email })}
                   />
                   <AvatarFallback className="font-medium text-muted-foreground uppercase text-xs">
                     {collaborator.email.split("@")[0].substring(0, 2)}
@@ -440,7 +442,7 @@ export function Collaborators({
                       ) : (
                         <EllipsisVertical />
                       )}
-                      <span className="sr-only">Collaborator actions</span>
+                      <span className="sr-only">{t('collaborators.actions_label')}</span>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
@@ -451,7 +453,7 @@ export function Collaborators({
                         resending.includes(collaborator.id)
                       }
                     >
-                      Resend invitation
+                      {t('collaborators.resend_invitation_button')}
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
@@ -462,7 +464,7 @@ export function Collaborators({
                         resending.includes(collaborator.id)
                       }
                     >
-                      Remove
+                      {t('collaborators.remove_button')}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -478,21 +480,20 @@ export function Collaborators({
           >
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                <AlertDialogTitle>{t('collaborators.confirm_remove_title')}</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This will remove access to &quot;{owner}/{repo}&quot; for
-                  &quot;{collaboratorToRemove?.email}&quot;.
+                  {t('collaborators.confirm_remove_description', { owner, repo, email: collaboratorToRemove?.email })}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogCancel>{t('admin_confirm.cancel_button')}</AlertDialogCancel>
                 <AlertDialogAction
                   onClick={() => {
                     if (!collaboratorToRemove) return;
                     void handleConfirmRemove(collaboratorToRemove.id);
                   }}
                 >
-                  Remove collaborator
+                  {t('collaborators.confirm_remove_action')}
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -502,9 +503,9 @@ export function Collaborators({
         <div className="flex-1 flex items-center">
           <Empty>
             <EmptyHeader>
-              <EmptyTitle>No collaborators</EmptyTitle>
+              <EmptyTitle>{t('collaborators.empty_title')}</EmptyTitle>
               <EmptyDescription>
-                Invite collaborators to give them access to this repository.
+                {t('collaborators.empty_description_3')}
               </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>

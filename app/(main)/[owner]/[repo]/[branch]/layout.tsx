@@ -8,6 +8,7 @@ import { getToken } from "@/lib/token";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { getTranslation } from '../../../../../i18n.server';
 
 export default async function Layout({
   children,
@@ -16,6 +17,7 @@ export default async function Layout({
   children: React.ReactNode;
   params: Promise<{ owner: string; repo: string; branch: string; }>;
 }) {
+  const { t } = await getTranslation();
   const { owner, repo, branch } = await params;
   const requestHeaders = await headers();
   const session = await getServerSession();
@@ -63,12 +65,12 @@ export default async function Layout({
         errorMessage = (
           <Empty className="absolute inset-0 border-0 rounded-none">
             <EmptyHeader>
-              <EmptyTitle>Branch not found</EmptyTitle>
-              <EmptyDescription>{`The branch "${decodedBranch}" could not be found. It may have been removed or renamed.`}</EmptyDescription>
+              <EmptyTitle>{t('repo.branch_not_found_title')}</EmptyTitle>
+              <EmptyDescription>{t('repo.branch_not_found_description', { decodedBranch })}</EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               <Link className={buttonVariants({ variant: "default" })} href={`/${owner}/${repo}`}>
-                Open default branch
+                {t('repo.open_default_branch_link')}
               </Link>
             </EmptyContent>
           </Empty>
@@ -78,12 +80,12 @@ export default async function Layout({
       errorMessage = (
         <Empty className="absolute inset-0 border-0 rounded-none">
           <EmptyHeader>
-            <EmptyTitle>Access denied</EmptyTitle>
-            <EmptyDescription>You do not have permission to access this repository.</EmptyDescription>
+            <EmptyTitle>{t('repo_actions.access_denied_title')}</EmptyTitle>
+            <EmptyDescription>{t('repo.permission_denied_description')}</EmptyDescription>
           </EmptyHeader>
           <EmptyContent>
             <Link className={buttonVariants({ variant: "default" })} href="/">
-              Choose another repository
+              {t('repo.choose_another_repo_link')}
             </Link>
           </EmptyContent>
         </Empty>

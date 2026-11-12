@@ -19,6 +19,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { useTranslation } from 'react-i18next';
 
 export function AdminUserRowActions({
   name,
@@ -27,13 +28,14 @@ export function AdminUserRowActions({
   name: string;
   action: () => Promise<unknown>;
 }) {
+  const { t } = useTranslation();
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon-sm" aria-label={`User actions for ${name}`}>
+          <Button variant="outline" size="icon-sm" aria-label={t('admin.user_actions_aria_label', { name })}>
             <MoreHorizontal className="size-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -46,7 +48,7 @@ export function AdminUserRowActions({
             }}
           >
             <LogOut className="size-4" />
-            Log out
+            {t('admin.user_actions.logout_dropdown')}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -54,13 +56,13 @@ export function AdminUserRowActions({
       <AlertDialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Log out user?</AlertDialogTitle>
+            <AlertDialogTitle>{t('admin.user_actions.logout_confirm_title')}</AlertDialogTitle>
             <AlertDialogDescription>
-              This will revoke all active sessions for {name}.
+              {t('admin.user_actions.logout_confirm_description', { name })}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>{t('admin_confirm.cancel_button')}</AlertDialogCancel>
             <form
               className="contents"
               action={async () => {
@@ -68,7 +70,7 @@ export function AdminUserRowActions({
                 setConfirmOpen(false);
               }}
             >
-              <AlertDialogAction>Log out</AlertDialogAction>
+              <AlertDialogAction>{t('admin.user_actions.logout_dropdown')}</AlertDialogAction>
             </form>
           </AlertDialogFooter>
         </AlertDialogContent>

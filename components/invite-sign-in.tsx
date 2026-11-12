@@ -14,6 +14,7 @@ import {
   EmptyHeader,
   EmptyTitle,
 } from "@/components/ui/empty";
+import { useTranslation } from 'react-i18next';
 
 type InviteState =
   | { status: "loading" }
@@ -28,6 +29,7 @@ type InviteState =
     };
 
 export function InviteSignIn({ token }: { token: string }) {
+  const { t } = useTranslation();
   const [state, setState] = useState<InviteState>({ status: "loading" });
   const [otp, setOtp] = useState("");
   const [pending, setPending] = useState<null | "send" | "verify" | "sign-out">(null);
@@ -81,7 +83,7 @@ export function InviteSignIn({ token }: { token: string }) {
         toast.error(result.error.message);
       }
     } catch {
-      toast.error("Unable to send sign-in code.");
+      toast.error(t('invite_sign_in.send_code_error'));
     } finally {
       setPending(null);
     }
@@ -90,7 +92,7 @@ export function InviteSignIn({ token }: { token: string }) {
   async function verifyOtp() {
     if (state.status !== "otp_required") return;
     if (otp.length !== 6) {
-      toast.error("Enter the 6-digit code.");
+      toast.error(t('invite_sign_in.enter_code_prompt'));
       return;
     }
 
@@ -121,10 +123,10 @@ export function InviteSignIn({ token }: { token: string }) {
         return;
       }
 
-      toast.error("Unable to claim this invitation.");
+      toast.error(t('invite_sign_in.claim_invitation_error'));
       setPending(null);
     } catch {
-      toast.error("Unable to verify code.");
+      toast.error(t('invite_sign_in.verify_code_error'));
       setPending(null);
     }
   }
@@ -143,12 +145,12 @@ export function InviteSignIn({ token }: { token: string }) {
     return (
       <Empty className={shellClassName}>
         <EmptyHeader>
-          <EmptyTitle>Invite unavailable</EmptyTitle>
-          <EmptyDescription>This invitation is no longer available.</EmptyDescription>
+          <EmptyTitle>{t('auth.collaborator.invite_unavailable')}</EmptyTitle>
+          <EmptyDescription>{t('invite_sign_in.invitation_unavailable_message')}</EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
           <Link href="/sign-in" className={buttonVariants()}>
-            Sign in
+            {t('invite_sign_in.sign_in_link')}
           </Link>
         </EmptyContent>
       </Empty>
@@ -159,8 +161,8 @@ export function InviteSignIn({ token }: { token: string }) {
     return (
       <Empty className={shellClassName}>
         <EmptyHeader>
-          <EmptyTitle>Wrong account</EmptyTitle>
-          <EmptyDescription>This invitation was sent to another account.</EmptyDescription>
+          <EmptyTitle>{t('invite_sign_in.wrong_account_title')}</EmptyTitle>
+          <EmptyDescription>{t('invite_sign_in.invitation_sent_to_other_account_message')}</EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
           <Button
@@ -175,11 +177,11 @@ export function InviteSignIn({ token }: { token: string }) {
               }
             }}
           >
-            Sign out
+            {t('invite_sign_in.sign_out_button')}
             {pending === "sign-out" && <Loader className="size-4 animate-spin" />}
           </Button>
           <Link href="/" className={buttonVariants({ variant: "outline" })}>
-            Go home
+            {t('admin.go_home_link')}
           </Link>
         </EmptyContent>
       </Empty>

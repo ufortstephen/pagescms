@@ -10,12 +10,14 @@ import {
   InputGroupInput,
   InputGroupText,
 } from "@/components/ui/input-group";
+import { useTranslation } from 'react-i18next';
 
 export function AdminUserSearch({
   initialQuery,
 }: {
   initialQuery: string;
 }) {
+  const { t } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -56,7 +58,7 @@ export function AdminUserSearch({
         type="search"
         value={value}
         onChange={(event) => setValue(event.target.value)}
-        placeholder="Search users"
+        placeholder={t('admin_user_search.search_placeholder')}
         className="h-8"
       />
     </InputGroup>

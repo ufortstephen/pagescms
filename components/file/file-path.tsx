@@ -7,6 +7,7 @@ import { Pencil } from "lucide-react";
 import { Ellipsis, ChevronRight, Folder } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from 'react-i18next';
 export function FilePath({
   path,
   sha,
@@ -20,6 +21,7 @@ export function FilePath({
   name?: string;
   onRename?: (path: string, newPath: string) => void;
 }) {
+  const { t } = useTranslation();
   const pathSegments = useMemo(() => path.split("/"), [path]);
 
   const [isRenameOpen, setIsRenameOpen] = useState(false);
@@ -54,7 +56,7 @@ export function FilePath({
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            Rename
+            {t('file.rename_option')}
           </TooltipContent>
         </Tooltip>
       </div>

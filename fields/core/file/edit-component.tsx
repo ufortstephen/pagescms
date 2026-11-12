@@ -17,6 +17,7 @@ import { getSchemaByName } from "@/lib/schema";
 import type { Config } from "@/types/config";
 import type { Field } from "@/types/field";
 import type { FileSaveData } from "@/types/api";
+import { useTranslation, Trans } from 'react-i18next';
 
 const generateId = () => crypto.randomUUID().replace(/-/g, "").slice(0, 8);
 
@@ -53,6 +54,7 @@ const FileTeaser = ({ file, config, onRemove, getFileIcon }: {
   onRemove?: () => void;
   getFileIcon: (file: string) => React.ReactNode;
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       <div title={file} className="flex items-center gap-x-1 px-2 h-9 rounded-md bg-muted truncate text-sm">
@@ -68,13 +70,13 @@ const FileTeaser = ({ file, config, onRemove, getFileIcon }: {
                 href={`https://github.com/${config.owner}/${config.repo}/blob/${config.branch}/${file}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`View ${getFileName(file)} on GitHub`}
+                aria-label={t('file.view_on_github_aria_label', { fileName: getFileName(file) })}
               >
                 <ArrowUpRight />
               </a>
             </Button>
           </TooltipTrigger>
-          <TooltipContent>View on GitHub</TooltipContent>
+          <TooltipContent>{t('actions.view_on_github_link')}</TooltipContent>
         </Tooltip>
         {onRemove && (
           <Tooltip>
@@ -85,12 +87,12 @@ const FileTeaser = ({ file, config, onRemove, getFileIcon }: {
                 size="icon"
                 className="text-muted-foreground hover:text-foreground"
                 onClick={onRemove}
-                aria-label={`Remove ${getFileName(file)}`}
+                aria-label={t('file.remove_aria_label', { fileName: getFileName(file) })}
               >
                 <Trash2 />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Remove</TooltipContent>
+            <TooltipContent>{t('file.remove_tooltip')}</TooltipContent>
           </Tooltip>
         )}
       </ButtonGroup>
@@ -139,6 +141,7 @@ const SortableItem = ({ id, file, config, onRemove, getFileIcon, readonly = fals
 };
 
 const EditComponent = forwardRef((props: EditorProps, ref: React.Ref<HTMLInputElement>) => {
+  const { t } = useTranslation();
   const { value, field, onChange } = props;
   void ref;
   const { config } = useConfig();
@@ -310,13 +313,9 @@ const EditComponent = forwardRef((props: EditorProps, ref: React.Ref<HTMLInputEl
   if (!mediaConfig) {
     return (
       <p className="text-muted-foreground bg-muted rounded-md px-3 py-2">
-      No media configuration found. {' '}
-      <a 
+      <Trans i18nKey="file.no_media_config_found" components={{ a: <a 
         href={`/${config.owner}/${config.repo}/${encodeURIComponent(config.branch || "")}/settings`}
-        className="underline hover:text-foreground"
-      >
-        Check your settings
-      </a>.
+        className="underline hover:text-foreground" /> }} />
     </p>
     );
   }
@@ -370,7 +369,7 @@ const EditComponent = forwardRef((props: EditorProps, ref: React.Ref<HTMLInputEl
               <MediaUpload.Trigger>
                 <Button type="button" size="sm" variant="outline" className="gap-2">
                   <Upload className="h-3.5 w-3.5"/>
-                  Upload
+                  {t('media.upload_button')}
                 </Button>
               </MediaUpload.Trigger>
               
@@ -383,7 +382,7 @@ const EditComponent = forwardRef((props: EditorProps, ref: React.Ref<HTMLInputEl
               >
                 <Button type="button" size="sm" variant="outline">
                   <FolderOpen />
-                  Select
+                  {t('media.select_button')}
                 </Button>
               </MediaDialog>
             </div>

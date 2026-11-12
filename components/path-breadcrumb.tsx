@@ -18,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Home } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const PathBreadcrumb = ({
   path = "",
@@ -30,6 +31,7 @@ const PathBreadcrumb = ({
   className?: string;
   handleNavigate: (newPath: string) => void
 }) => {
+  const { t } = useTranslation();
   const normalizedPath = normalizePath(path);
   const normalizedRelativePath = getRelativePath(normalizedPath, rootPath);
   const pathArray = normalizedRelativePath ? normalizedRelativePath.split("/") : [];
@@ -67,7 +69,7 @@ const PathBreadcrumb = ({
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex items-center gap-1">
                     <BreadcrumbEllipsis className="h-4 w-4" />
-                    <span className="sr-only">Toggle menu</span>
+                    <span className="sr-only">{t('path_breadcrumb.toggle_menu')}</span>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start">
                     {breadcrumbDropdown.map((item) => (

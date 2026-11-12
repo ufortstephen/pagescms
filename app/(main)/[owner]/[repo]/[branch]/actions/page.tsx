@@ -7,8 +7,10 @@ import { useUser } from "@/contexts/user-context";
 import { hasGithubIdentity } from "@/lib/authz-shared";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
 import { getRootActions, getSchemaActions } from "@/lib/actions";
+import { useTranslation } from 'react-i18next';
 
 export default function Page() {
+  const { t } = useTranslation();
   const { config } = useConfig();
   const { user } = useUser();
 
@@ -18,8 +20,8 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Access denied</EmptyTitle>
-          <EmptyDescription>Only GitHub users can view action history.</EmptyDescription>
+          <EmptyTitle>{t('repo_actions.access_denied_title')}</EmptyTitle>
+          <EmptyDescription>{t('repo_actions.github_users_only_description')}</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );

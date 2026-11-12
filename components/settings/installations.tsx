@@ -10,15 +10,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ArrowUpRight, Ban, EllipsisVertical } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const Installations = () => {
+  const { t } = useTranslation();
   const { user } = useUser();
 
   if (!user || !user.accounts) {
     return (
       <div className="text-sm text-muted-foreground h-[50px] px-6 flex justify-center items-center bg-accent rounded-md">
         <Ban className="h-4 w-4 mr-2" />
-        No account with the Github application installed.
+        {t('installations.no_account_github')}
       </div>
     );
   }
@@ -33,7 +35,7 @@ const Installations = () => {
           <div className="flex gap-x-2 items-center">
             <img
               src={`https://github.com/${account.login}.png`}
-              alt={`${account.login}'s avatar`}
+              alt={t('repo_select.login_avatar_alt', { login: account.login })}
               className="h-6 w-6 rounded"
             />
             <span className="font-medium truncate hover:underline">{account.login}</span>
@@ -42,7 +44,7 @@ const Installations = () => {
             <DropdownMenuTrigger asChild>
               <Button size="icon-xs" variant="outline" className="ml-auto">
                 <EllipsisVertical className="h-4 w-4" />
-                <span className="sr-only">Installation actions</span>
+                <span className="sr-only">{t('installations.installation_actions')}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -52,7 +54,7 @@ const Installations = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Manage GitHub App
+                  {t('repo_select.manage_github_app_tooltip')}
                   <ArrowUpRight className="size-3 text-muted-foreground ml-auto" />
                 </a>
               </DropdownMenuItem>

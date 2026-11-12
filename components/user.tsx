@@ -19,6 +19,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Settings, LogOut } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export function User({
   className,
@@ -29,6 +30,7 @@ export function User({
   onClick?: () => void;
   align?: "start" | "center" | "end";
 }) {
+  const { t } = useTranslation();
   const { user } = useUser();
   const { theme, setTheme } = useTheme();
 
@@ -68,22 +70,22 @@ export function User({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuLabel className="w-40 text-xs text-muted-foreground font-medium">
-          Theme
+          {t('user.theme_label')}
         </DropdownMenuLabel>
         <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
           <DropdownMenuRadioItem value="light" onClick={onClick}>
-            Light
+            {t('user.theme_light')}
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="dark" onClick={onClick}>
-            Dark
+            {t('user.theme_dark')}
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="system" onClick={onClick}>
-            System
+            {t('user.theme_system')}
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/settings">Settings</Link>
+          <Link href="/settings">{t('settings.title')}</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
@@ -94,7 +96,7 @@ export function User({
             window.location.assign("/sign-in");
           }}
         >
-          Sign out
+          {t('invite_sign_in.sign_out_button')}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

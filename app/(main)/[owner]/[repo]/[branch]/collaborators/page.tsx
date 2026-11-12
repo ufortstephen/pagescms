@@ -6,8 +6,10 @@ import { useConfig } from "@/contexts/config-context";
 import { useUser } from "@/contexts/user-context";
 import { hasGithubIdentity } from "@/lib/authz-shared";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
+import { useTranslation } from 'react-i18next';
 
 export default function Page() {
+  const { t } = useTranslation();
   const { config } = useConfig();
   const { user } = useUser();
   if (!config) throw new Error(`Configuration not found.`);
@@ -15,8 +17,8 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Access denied</EmptyTitle>
-          <EmptyDescription>Only GitHub users can manage collaborators.</EmptyDescription>
+          <EmptyTitle>{t('repo_actions.access_denied_title')}</EmptyTitle>
+          <EmptyDescription>{t('collaborators.empty_description')}</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );

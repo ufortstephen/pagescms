@@ -1,3 +1,4 @@
+import type { TFunction } from "i18next";
 import { Field } from "@/types/field";
 import { z } from "zod";
 import * as booleanField from "@/fields/core/boolean";
@@ -25,7 +26,7 @@ type FieldModule = {
 
 const fieldTypes = new Set<string>();
 const labels: Record<string, string> = {};
-const schemas: Record<string, (field: Field, configObject?: Record<string, any>) => z.ZodTypeAny> = {};
+const schemas: Record<string, (field: Field, configObject?: Record<string, any>, t?: TFunction) => z.ZodTypeAny> = {};
 const defaultValues: Record<string, any> = {};
 const readFns: Record<string, (value: any, field: Field, configObject?: Record<string, any>) => void> = {};
 const writeFns: Record<string, (value: any, field: Field, configObject?: Record<string, any>) => void> = {};

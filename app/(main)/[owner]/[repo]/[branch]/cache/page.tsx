@@ -7,8 +7,10 @@ import { useUser } from "@/contexts/user-context";
 import { hasGithubIdentity } from "@/lib/authz-shared";
 import { isCacheEnabled } from "@/lib/config";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
+import { useTranslation } from 'react-i18next';
 
 export default function Page() {
+  const { t } = useTranslation();
   const { config } = useConfig();
   const { user } = useUser();
 
@@ -18,8 +20,8 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Access denied</EmptyTitle>
-          <EmptyDescription>Only GitHub users can manage the cache.</EmptyDescription>
+          <EmptyTitle>{t('repo_actions.access_denied_title')}</EmptyTitle>
+          <EmptyDescription>{t('cache.git_users_only')}</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );
@@ -29,8 +31,8 @@ export default function Page() {
     return (
       <Empty className="absolute inset-0 border-0 rounded-none">
         <EmptyHeader>
-          <EmptyTitle>Cache disabled</EmptyTitle>
-          <EmptyDescription>Enable the cache in &quot;.pages.yml&quot; by setting &quot;settings.cache: true&quot;.</EmptyDescription>
+          <EmptyTitle>{t('cache.disabled_title')}</EmptyTitle>
+          <EmptyDescription>{t('cache.enable_instructions')}</EmptyDescription>
         </EmptyHeader>
       </Empty>
     );

@@ -65,6 +65,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { toast } from "sonner";
 import { EllipsisVertical, History, Lock, LockOpen, Save } from "lucide-react";
 import useSWR, { useSWRConfig } from "swr";
+import { useTranslation } from 'react-i18next';
 
 type LintView = {
   state: {
@@ -94,6 +95,7 @@ export function Entry({
   headerMeta?: ReactNode;
   onSave?: (data: Record<string, unknown>) => void;
 }) {
+  const { t } = useTranslation();
   const [path, setPath] = useState<string | undefined>(initialPath);
   const [entry, setEntry] = useState<EntryData | null>();
   const [sha, setSha] = useState<string | undefined>();
@@ -258,9 +260,9 @@ export function Entry({
       const titleValue = hasPrimaryValue
         ? String(primaryValue)
         : getFileName(normalizePath(path));
-      setDisplayTitle(`Editing "${titleValue}"`);
+      setDisplayTitle(t('entry.editing_title', { titleValue }));
     } else if (!title && path && path !== ".pages.yml") {
-      setDisplayTitle(`Editing "${getFileName(normalizePath(path))}"`);
+      setDisplayTitle(t('entry.editing_file', { fileName: getFileName(normalizePath(path)) }));
     }
   }, [initialPath, path, schema, swrEntryData, title]);
 
@@ -565,7 +567,7 @@ export function Entry({
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center">
                   <BreadcrumbEllipsis className="h-4 w-4" />
-                  <span className="sr-only">Show hidden segments</span>
+                  <span className="sr-only">{t('collection.show_hidden_segments_label')}</span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
                   {middleEntries.map((entry) => (
@@ -699,10 +701,10 @@ export function Entry({
                 )
               )
             }
-            aria-label="Save"
+            aria-label={t('entry.save_aria_label')}
           >
             <Save className="size-4 sm:hidden" />
-            <span className="hidden sm:inline">Save</span>
+            <span className="hidden sm:inline">{t('entry.save_aria_label')}</span>
           </Button>
           {path && (
             <ButtonGroup>
@@ -775,18 +777,18 @@ export function Entry({
         <div className="absolute inset-0 p-4 md:p-6 flex items-center justify-center">
           <Empty className="max-w-[420px] flex-none">
             <EmptyHeader>
-              <EmptyTitle>{isSettingsPage ? "Configuration not found" : "File not found"}</EmptyTitle>
+              <EmptyTitle>{isSettingsPage ? t('entry.config_not_found_title') : t('entry.file_not_found_title')}</EmptyTitle>
               <EmptyDescription>
                 {isSettingsPage
-                  ? "The configuration file \".pages.yml\" does not exist yet."
-                  : `The file "${path ?? schema?.path ?? "unknown"}" does not exist yet.`}
+                  ? t('entry.config_file_missing_desc')
+                  : t('entry.file_missing_desc', { value: path ?? schema?.path ?? "unknown" })}
               </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
               {isSettingsPage ? (
-                <EmptyCreate type="settings">Create configuration file</EmptyCreate>
+                <EmptyCreate type="settings">{t('entry.create_config_file')}</EmptyCreate>
               ) : canCreate ? (
-                <EmptyCreate type="content" name={schema?.name ?? name}>Create file</EmptyCreate>
+                <EmptyCreate type="content" name={schema?.name ?? name}>{t('entry.create_file')}</EmptyCreate>
               ) : null}
             </EmptyContent>
           </Empty>
@@ -797,7 +799,7 @@ export function Entry({
         <div className="absolute inset-0 p-4 md:p-6 flex items-center justify-center">
           <Empty className="max-w-[420px] flex-none">
             <EmptyHeader>
-              <EmptyTitle>Something went wrong</EmptyTitle>
+              <EmptyTitle>{t('error.title')}</EmptyTitle>
               <EmptyDescription>{error}</EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
@@ -805,7 +807,7 @@ export function Entry({
                 className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90"
                 href={`/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/configuration`}
               >
-                Go to configuration
+                {t('entry.config_link')}
               </Link>
             </EmptyContent>
           </Empty>
@@ -819,9 +821,9 @@ export function Entry({
       <div className="absolute inset-0 p-4 md:p-6 flex items-center justify-center">
         <Empty className="max-w-[420px] flex-none">
           <EmptyHeader>
-            <EmptyTitle>Creating entries is disabled</EmptyTitle>
+            <EmptyTitle>{t('entry.disabled_title')}</EmptyTitle>
             <EmptyDescription>
-              New entries are not allowed for this collection.
+              {t('entry.disabled_description')}
             </EmptyDescription>
           </EmptyHeader>
           <EmptyContent>
@@ -829,7 +831,7 @@ export function Entry({
               className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90"
               href={`/${config.owner}/${config.repo}/${encodeURIComponent(config.branch)}/collection/${encodeURIComponent(name)}`}
             >
-              Back to collection
+              {t('entry.back_to_collection')}
             </Link>
           </EmptyContent>
         </Empty>
@@ -850,9 +852,9 @@ export function Entry({
                 <InputGroupInput
                   value={filenameValue}
                   onChange={(event) => setFilenameValue(event.target.value)}
-                  placeholder="Filename"
+                  placeholder={t('entry.filename_placeholder')}
                   disabled={path ? !isFilenameUnlocked : false}
-                  aria-label="Filename"
+                  aria-label={t('entry.filename_placeholder')}
                 />
                 {path && filenameFieldMode === "enabled" && canRename && (
                   <InputGroupAddon align="inline-end">
@@ -863,7 +865,7 @@ export function Entry({
                           variant="ghost"
                           size="icon-xs"
                           onClick={() => setIsFilenameUnlocked((prev) => !prev)}
-                          aria-label={isFilenameUnlocked ? "Lock filename" : "Unlock filename"}
+                          aria-label={isFilenameUnlocked ? t('entry.lock_filename_aria') : t('entry.unlock_filename_aria')}
                         >
                           {isFilenameUnlocked
                             ? <LockOpen className="size-3.5" />
@@ -871,7 +873,7 @@ export function Entry({
                         </InputGroupButton>
                       </TooltipTrigger>
                       <TooltipContent>
-                        {isFilenameUnlocked ? "Lock filename" : "Unlock to edit"}
+                        {isFilenameUnlocked ? t('entry.lock_tooltip') : t('entry.unlock_edit_tooltip')}
                       </TooltipContent>
                     </Tooltip>
                   </InputGroupAddon>

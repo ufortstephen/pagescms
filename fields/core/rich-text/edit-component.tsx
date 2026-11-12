@@ -41,6 +41,7 @@ import {
 import type { ApiResponse, FileSaveData } from "@/types/api";
 import type { Field } from "@/types/field";
 import "./edit-component.css";
+import { useTranslation } from 'react-i18next';
 
 type MediaSchema = {
   name: string;
@@ -316,6 +317,7 @@ const rewriteMarkdownImagesAsync = async (
 
 const EditComponent = forwardRef(
   (props: EditProps, ref: React.Ref<HTMLDivElement>) => {
+    const { t } = useTranslation();
     const { config } = useConfig();
     const { isPrivate } = useRepo();
 
@@ -850,7 +852,7 @@ const EditComponent = forwardRef(
           disabled={isReadonly || isTransforming || pendingUploads > 0}
           data-active={mode === "editor" ? "true" : undefined}
         >
-          Editor
+          {t('rich_text.editor_button')}
         </button>
         <button
           type="button"
@@ -864,7 +866,7 @@ const EditComponent = forwardRef(
           disabled={isReadonly || isTransforming || pendingUploads > 0}
           data-active={mode === "source" ? "true" : undefined}
         >
-          Source
+          {t('rich_text.source_button')}
         </button>
       </div>
     );

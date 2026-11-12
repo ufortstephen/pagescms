@@ -5,6 +5,7 @@
 import slugify from "slugify";
 import { defaultValues, schemas } from "@/fields/registry";
 import { z } from "zod";
+import type { TFunction } from "i18next";
 import { Field } from "@/types/field";
 import { format } from "date-fns";
 
@@ -146,7 +147,8 @@ const isEffectivelyEmpty = (value: unknown): boolean => {
 // Generate a Zod schema for validation
 const generateZodSchema = (
   fields: Field[],
-  ignoreHidden: boolean = false
+  ignoreHidden: boolean = false,
+  t?: TFunction
 ): z.ZodTypeAny => {
   const buildSchemaObject = (currentFields: Field[]): Record<string, z.ZodTypeAny> => {
     return currentFields.reduce((acc: Record<string, z.ZodTypeAny>, field) => {
@@ -197,11 +199,11 @@ const generateZodSchema = (
       } else if (field.type && schemas[field.type]) {
         // Standard registered field type (e.g. text, number, ...)
         const fieldSchemaFn = schemas[field.type];
-        fieldSchema = fieldSchemaFn(field);
+        fieldSchema = fieldSchemaFn(field, undefined, t);
       } else {
         console.warn(`Unknown or invalid type "${field.type}" for field "${field.name}". Defaulting to text validation.`);
         const fallbackSchema = schemas["text"];
-        fieldSchema = fallbackSchema ? fallbackSchema(field) : z.string();
+        fieldSchema = fallbackSchema ? fallbackSchema(field, undefined, t) : z.string();
       }
 
       if (field.list) {

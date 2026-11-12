@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { useTranslation } from 'react-i18next';
 
 export function FileRename({
   isOpen,
@@ -35,6 +36,7 @@ export function FileRename({
   name?: string;
   onRename?: (path: string, newPath: string) => void;
 }) {
+  const { t } = useTranslation();
   const { config } = useConfig();
   if (!config) throw new Error(`Configuration not found.`);
   
@@ -89,7 +91,7 @@ export function FileRename({
     <Dialog open={isOpen} onOpenChange={onOpenChange}>      
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Rename file</DialogTitle>
+          <DialogTitle>{t('file.rename_dialog_title')}</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <Input
@@ -98,10 +100,10 @@ export function FileRename({
         />
         <DialogFooter className="max-sm:gap-y-2">
           <DialogClose asChild>
-            <Button type="button" variant="outline">Cancel</Button>
+            <Button type="button" variant="outline">{t('admin_confirm.cancel_button')}</Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button type="submit" onClick={handleRename}>Rename</Button>
+            <Button type="submit" onClick={handleRename}>{t('file.rename_button')}</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

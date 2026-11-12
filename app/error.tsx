@@ -12,6 +12,7 @@ import {
   EmptyHeader,
   EmptyTitle,
 } from "@/components/ui/empty";
+import { useTranslation } from 'react-i18next';
 
 export default function Error({
   error,
@@ -20,6 +21,7 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const { t } = useTranslation();
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -31,7 +33,7 @@ export default function Error({
   return (
     <Empty className="absolute inset-0 border-0 rounded-none">
       <EmptyHeader>
-        <EmptyTitle>Something went wrong</EmptyTitle>
+        <EmptyTitle>{t('error.title')}</EmptyTitle>
         <EmptyDescription>{error.message}</EmptyDescription>
       </EmptyHeader>
       <EmptyContent className="flex-row justify-center gap-2">
@@ -39,13 +41,13 @@ export default function Error({
           className={buttonVariants({ variant: "default" })}
           href="/"
         >
-          Go home
+          {t('admin.go_home_link')}
         </Link>
         <button
           className={buttonVariants({ variant: "outline" })}
           onClick={reset}
         >
-          Try again
+          {t('error.try_again_button')}
         </button>
       </EmptyContent>
     </Empty>
