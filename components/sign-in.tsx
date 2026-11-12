@@ -223,6 +223,7 @@ export function SignIn() {
                 )}
               </Button>
             </form>
+            <p className="text-sm text-muted-foreground text-center">We'll email you a 6-digit code. No password needed.</p>
             {legalCopy}
           </div>
         )}
